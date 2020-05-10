@@ -10,17 +10,19 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="518.0" prefWidth="842.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="549.0" prefWidth="842.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.resultsController">
    <children>
-      <TableView fx:id="table" layoutX="14.0" layoutY="55.0" prefHeight="348.0" prefWidth="671.0">
+      <TableView fx:id="table" layoutX="14.0" layoutY="55.0" prefHeight="348.0" prefWidth="816.0">
         <columns>
           <TableColumn prefWidth="39.47491455078125" text="ID" />
           <TableColumn prefWidth="155.72216796875" text="Title" />
             <TableColumn prefWidth="103.6019287109375" text="Publisher" />
-            <TableColumn prefWidth="59.61260986328125" text="Year" />
+            <TableColumn prefWidth="59.61260986328125" text="Authers" />
             <TableColumn prefWidth="65.17724609375" text="Price" />
             <TableColumn prefWidth="68.0364990234375" text="Category" />
+            <TableColumn prefWidth="59.61260986328125" text="Year" />
+            <TableColumn prefWidth="59.61260986328125" text="Threshold" />
+            <TableColumn prefWidth="59.61260986328125" text="Quantity" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -41,44 +43,41 @@
             <TextField fx:id="cateF" prefHeight="25.0" prefWidth="98.0" promptText="Category" />
          </children>
       </HBox>
-      <Button fx:id="add" layoutX="109.0" layoutY="456.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="131.0" style="-fx-background-color: green;" text="Add New Book" textFill="WHITE">
+      <Button fx:id="add" layoutX="109.0" layoutY="496.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="131.0" style="-fx-background-color: green;" text="Add New Book" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="modify" layoutX="277.0" layoutY="456.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="131.0" style="-fx-background-color: blue;" text="Modify" textFill="WHITE">
+      <Button fx:id="modify" layoutX="277.0" layoutY="496.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="131.0" style="-fx-background-color: blue;" text="Modify" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="clear" layoutX="437.0" layoutY="456.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="131.0" style="-fx-background-color: red;" text="Clear Fields" textFill="WHITE">
+      <Button fx:id="clear" layoutX="437.0" layoutY="496.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="131.0" style="-fx-background-color: red;" text="Clear Fields" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="14.0" />
          </font>
       </Button>
-      <VBox layoutX="706.0" layoutY="129.0" prefHeight="200.0" prefWidth="122.0" spacing="15.0">
+      <VBox layoutX="706.0" layoutY="429.0" prefHeight="67.0" prefWidth="122.0" spacing="15.0">
          <children>
-            <Button fx:id="authersBtn" mnemonicParsing="false" prefHeight="31.0" prefWidth="122.0" text="Authers">
+            <Button fx:id="details" mnemonicParsing="false" onAction="#pressButton" prefHeight="31.0" prefWidth="122.0" text="Detailed Result">
                <font>
                   <Font size="15.0" />
                </font>
             </Button>
-            <Button fx:id="publisherBtn" mnemonicParsing="false" prefHeight="31.0" prefWidth="121.0" text="Publishers">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Button>
-            <Button fx:id="CopiesBtn" mnemonicParsing="false" prefHeight="31.0" prefWidth="124.0" text="Book Copies">
-               <font>
-                  <Font size="15.0" />
-               </font>
-            </Button>
-            <Button fx:id="CateBtn" mnemonicParsing="false" prefHeight="31.0" prefWidth="129.0" text="Categories">
+            <Button fx:id="orders" mnemonicParsing="false" prefHeight="31.0" prefWidth="124.0" text="Orders">
                <font>
                   <Font size="15.0" />
                </font>
             </Button>
          </children>
       </VBox>
+      <HBox layoutX="144.0" layoutY="456.0" prefHeight="38.0" prefWidth="399.0" spacing="5.0">
+         <children>
+            <TextField fx:id="authers" prefHeight="25.0" prefWidth="193.0" promptText="Authers" />
+            <TextField fx:id="thres" prefHeight="25.0" prefWidth="98.0" promptText="Threshold" />
+            <TextField fx:id="avaiable" prefHeight="25.0" prefWidth="98.0" promptText="Available" />
+         </children>
+      </HBox>
    </children>
 </Pane>
