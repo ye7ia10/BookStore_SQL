@@ -11,8 +11,8 @@ constraint book_PK primary key (ISBN));
 
 create table book_authors(
 book_id int not null,
-author_id int auto_increment not null,
-constraint book_authors_PK primary key(author_id, book_id));
+author_name varchar(25) not null,
+constraint book_authors_PK primary key(author_name, book_id));
 
 create table category(
 id int auto_increment not null,

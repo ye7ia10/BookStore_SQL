@@ -1,22 +1,102 @@
 package model;
 
 import java.sql.*;
+import java.util.ArrayList;
 public class BookModel {
+	private String username = "root";
+	private String password = "new_password";
+	private String dataBasse_name = "project";
+	private String host_url = "jdbc:mysql://localhost:3306/";
+	private Connection con;
 	BookModel() {
 		try {
-			System.out.println(" Reach there");
 			Class.forName("com.mysql.jdbc.Driver");  
-			Connection con=DriverManager.getConnection(  
-			"jdbc:mysql://localhost:3306/project","root","new_password");  
-			//here sonoo is database name, root is username and password  
-			Statement stmt=con.createStatement();  
-			ResultSet rs=stmt.executeQuery("select * from book");  
-			while(rs.next())  
-			System.out.println(rs.getInt(1)+"  "+rs.getString(2)+"  "+rs.getString(3));  
-			con.close();
+			con = DriverManager.getConnection(  
+					host_url + dataBasse_name, username, password);
+		} catch (Exception e) {
+			System.out.println(e);
+		}
+	}
+	void addAuthors(int ISBN, ArrayList<String> authors) {
+		String query = " insert into book_authors (book_id, author_name)"
+		        + " values (?, ?)";
+		for (String s : authors) {
+			try {
+				PreparedStatement preparedStmt = con.prepareStatement(query);
+	            preparedStmt.setInt(1, ISBN);
+	            preparedStmt.setString(2, s);
+	            preparedStmt.execute();
+			} catch (Exception e) {
+				System.out.println(e);
+			}
+		}
+	}
+	void addBook(int ISBN, String title, ArrayList<String> authors,
+			String publisher_name, int min_quantity, int publication_year,
+			int selling_price, String category_name) {
+		
+		System.out.println("add book");
+		
+		try {
+            /* get Id of category */
+            String queryString = "SELECT * FROM category WHERE category_name=(?)";
+            PreparedStatement preparedStmt = con.prepareStatement(queryString);
+            preparedStmt.setString(1, category_name);
+            ResultSet result = preparedStmt.executeQuery();
+            if (!result.next()) {
+            	/* category not found */
+            	System.out.println("no category with this name");
+            	return;
+            }
+			int category_id = result.getInt("id");
+			
+			
+			/* add book to the table */
+			String query = " insert into book (ISBN, title, publisher_Name, publish_year, selling_price, category_id)"
+			        + " values (?, ?, ?, ?, ?, ?)";
+			preparedStmt = con.prepareStatement(query);
+			preparedStmt.setInt (1, ISBN);
+			preparedStmt.setString (2, title);
+			preparedStmt.setString (3, publisher_name);
+			preparedStmt.setInt (4, publication_year);
+			preparedStmt.setInt (5, selling_price);
+			preparedStmt.setInt (6, category_id);
+			preparedStmt.execute();    
+			
+			/* add the authers of the book */
+			for (String s : authors) {
+				query = " insert into book_authors (book_id, auther_name)"
+				        + " values (?, ?)";
+				preparedStmt = con.prepareStatement(query);
+				preparedStmt.setInt (1, ISBN);
+				preparedStmt.setString(2, s);
+				preparedStmt.execute();
+			}
+			
 		} catch (Exception e) {
 			// TODO: handle exception
 			System.out.println(e);
 		}
+		
+		
+	}
+	void addPublisher(String publisherName, String address, int phone) {
+		
+		try {
+			System.out.println("Try add publisher");
+			  
+			String query = " insert into publisher (Publisher_Name, address, phone)"
+			        + " values (?, ?, ?)";
+			PreparedStatement preparedStmt = con.prepareStatement(query);
+			preparedStmt.setString (1, publisherName);
+			preparedStmt.setString (2,address);
+			preparedStmt.setInt    (3, phone);
+			preparedStmt.execute();      
+		} catch (Exception e) {
+			// TODO: handle exception
+			System.out.println(e);
+		}
+		
+		
 	}
 }
