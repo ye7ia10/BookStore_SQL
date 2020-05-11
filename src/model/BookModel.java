@@ -4,11 +4,11 @@ import java.sql.*;
 import java.util.ArrayList;
 public class BookModel {
 	private String username = "root";
-	private String password = "new_password";
+	private String password = "mypass";
 	private String dataBasse_name = "project";
 	private String host_url = "jdbc:mysql://localhost:3306/";
 	private Connection con;
-	BookModel() {
+	public BookModel() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");  
 			con = DriverManager.getConnection(  
@@ -17,7 +17,7 @@ public class BookModel {
 			System.out.println(e);
 		}
 	}
-	void addAuthors(int ISBN, ArrayList<String> authors) {
+	public void addAuthors(int ISBN, ArrayList<String> authors) {
 		String query = " insert into book_authors (book_id, author_name)"
 		        + " values (?, ?)";
 		for (String s : authors) {
@@ -31,9 +31,12 @@ public class BookModel {
 			}
 		}
 	}
-	void addBook(int ISBN, String title, ArrayList<String> authors,
+
+
+
+	public void addBook(int ISBN, String title, ArrayList<String> authors,
 			String publisher_name, int min_quantity, int publication_year,
-			int selling_price, String category_name) {
+			int selling_price, String category_name, int available) {
 		
 		System.out.println("add book");
 		
@@ -48,7 +51,7 @@ public class BookModel {
             	System.out.println("no category with this name");
             	return;
             }
-			int category_id = result.getInt("id");
+			int category_id = result.getInt(1);
 			
 			
 			/* add book to the table */
@@ -65,13 +68,23 @@ public class BookModel {
 			
 			/* add the authers of the book */
 			for (String s : authors) {
-				query = " insert into book_authors (book_id, auther_name)"
+				System.out.println(s);
+				query = " insert into book_authors (book_id, author_name)"
 				        + " values (?, ?)";
 				preparedStmt = con.prepareStatement(query);
 				preparedStmt.setInt (1, ISBN);
 				preparedStmt.setString(2, s);
 				preparedStmt.execute();
 			}
+			
+			/* add book copies and threshold */
+			query = " insert into book_copies (id, thersold, available)"
+			        + " values (?, ?, ?)";
+			preparedStmt = con.prepareStatement(query);
+			preparedStmt.setInt (1, ISBN);
+			preparedStmt.setInt(2, min_quantity);
+			preparedStmt.setInt(3, available);
+			preparedStmt.execute();
 			
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -80,7 +93,7 @@ public class BookModel {
 		
 		
 	}
-	void addPublisher(String publisherName, String address, int phone) {
+	public void addPublisher(String publisherName, String address, int phone) {
 		
 		try {
 			System.out.println("Try add publisher");

@@ -1,5 +1,8 @@
 package application;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -9,10 +12,12 @@ import javafx.scene.control.Button;
 
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import model.BookModel;
 import javafx.scene.control.TableView;
 
 public class resultsController {
 
+	private BookModel model = new BookModel();
     @FXML
     private TableView<?> table;
 
@@ -63,11 +68,42 @@ public class resultsController {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("details.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
+            
+            detailsController controller = 
+            	    fxmlLoader.<detailsController>getController();
+            	  controller.initData(model);
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));  
             stage.show();
         } catch(Exception e) {
             e.printStackTrace();
         }
+    }
+    
+    public void addBook(ActionEvent actionEvent) {
+    	System.out.println("Add book Pressed");
+    	String BookId = IdF.getText().toString();
+    	String BookTitle = TitleF.getText().toString();
+    	String BookPublisher = PublisherF.getText().toString();
+    	String BookYear = YearF.getText().toString();
+    	String BookPrice = PriceF.getText().toString();
+    	String BookCategory = cateF.getText().toString();
+    	String BookAuthor = authers.getText().toString();
+    	String BookAvailable = avaiable.getText().toString();
+    	String BookThresh = thres.getText().toString();
+    	
+    	if (BookId.length() == 0 || BookTitle.length() == 0 || BookPublisher.length() == 0
+    		|| BookYear.length() == 0 || BookPrice.length() == 0 || BookCategory.length() == 0
+    		|| BookAuthor.length() == 0 || BookAvailable.length() == 0 || BookThresh.length() == 0) {
+    		System.out.println("Empty fields !!!!");
+    	} else {
+    		System.out.println("Adding New Book");
+    		ArrayList<String> authors = new ArrayList<>(Arrays.asList(BookAuthor.split(",")));
+    		model.addBook(Integer.parseInt(BookId), BookTitle, authors, BookPublisher, 
+    				Integer.parseInt(BookThresh), Integer.parseInt(BookYear),
+    				Integer.parseInt(BookPrice), BookCategory, Integer.parseInt(BookAvailable));
+    		
+    	}
+
     }
 }

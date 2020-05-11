@@ -43,7 +43,7 @@
             <TextField fx:id="cateF" prefHeight="25.0" prefWidth="98.0" promptText="Category" />
          </children>
       </HBox>
-      <Button fx:id="add" layoutX="109.0" layoutY="496.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="131.0" style="-fx-background-color: green;" text="Add New Book" textFill="WHITE">
+      <Button fx:id="add" layoutX="109.0" layoutY="496.0" mnemonicParsing="false" onAction="#addBook" prefHeight="38.0" prefWidth="131.0" style="-fx-background-color: green;" text="Add New Book" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="14.0" />
          </font>

@@ -10,9 +10,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
+import model.BookModel;
 
 public class detailsController {
-	  @FXML
+	
+		private BookModel model;
+	    @FXML
 	    private Pane pane;
 
 	    @FXML
@@ -82,6 +85,28 @@ public class detailsController {
 	    private Button ModP;
 	    
 	    
-	
+	    public void pressButton(ActionEvent event) throws Exception {  
+	    	System.out.println("snsnsn");
+	        String PublisherName = Pname.getText().toString();
+	        String PublisherPhone = Pphone.getText().toString();
+	        String publisherAddress = Paddress.getText().toString();
+	        if (PublisherName == null || PublisherName.length() == 0 ||
+	        	PublisherPhone == null || PublisherPhone.length() == 0 ||
+	        	publisherAddress == null || PublisherPhone.length() == 0) {
+	        	System.out.println("Please !! Complete fields");
+	        } else {
+	        	model.addPublisher(PublisherName, publisherAddress, Integer.parseInt(PublisherPhone));
+	        }
+	    }
+
+
+		public void initData(BookModel model2) {
+			model = model2;
+		}
+	    
+	    
+	    
+	    
+	 
 	
 }
