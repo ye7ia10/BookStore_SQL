@@ -11,8 +11,7 @@ import javafx.stage.Stage;
 public class testController {
 
 	
-    @FXML
-    private Button btn1;
+    
     
     @FXML
     private Button search;
@@ -28,6 +27,9 @@ public class testController {
 
     @FXML
     private Button showOrders;
+
+    @FXML
+    private Button order;
 
     
 
@@ -45,6 +47,20 @@ public class testController {
     public void pressButton(ActionEvent event) throws Exception {               
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("results.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root1));  
+            stage.show();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
+    
+    
+    public void pressButtonOrder(ActionEvent event) throws Exception {               
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Order.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));  

@@ -65,7 +65,7 @@
                   <Font size="15.0" />
                </font>
             </Button>
-            <Button fx:id="orders" mnemonicParsing="false" prefHeight="31.0" prefWidth="124.0" text="Orders">
+            <Button fx:id="orders" mnemonicParsing="false" onAction="#pressButtonOrder" prefHeight="31.0" prefWidth="124.0" text="Orders">
                <font>
                   <Font size="15.0" />
                </font>
