@@ -13,11 +13,11 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-import model.BookModel;
+import model.BookStore;
 
 public class detailsController {
 	
-		private BookModel model;
+		private BookStore model;
 	    @FXML
 	    private Pane pane;
 
@@ -91,7 +91,7 @@ public class detailsController {
 
 
 	    /*** passing data injection ***/
-		public void initData(BookModel model2) {
+		public void initData(BookStore model2) {
 			model = model2;
 		}
 	    

@@ -14,12 +14,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
 import javafx.stage.Stage;
-import model.BookModel;
+import model.BookStore;
 import javafx.scene.control.TableView;
 
 public class resultsController {
 
-	private BookModel model = new BookModel();
+	private BookStore model = new BookStore();
     @FXML
     private TableView<?> table;
 
