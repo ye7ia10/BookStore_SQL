@@ -4,7 +4,7 @@ import java.sql.*;
 import java.util.ArrayList;
 public class BookStore {
 	private String username = "root";
-	private String password = "mypass";
+	private String password = "new_password";
 	private String dataBasse_name = "project";
 	private String host_url = "jdbc:mysql://localhost:3306/";
 	private Connection con;
@@ -321,8 +321,7 @@ public class BookStore {
 		
 		public BookRespond updateBook(Book book, Book new_book) {
 			
-			System.out.println(book.getTitle() + "  2adiiim");
-			System.out.println(new_book.getTitle() + "  gediiiiiid");
+			
 			BookRespond res = new BookRespond();
 			ArrayList<String> authors = new_book.getAuthors();
 			try {
@@ -415,7 +414,63 @@ public class BookStore {
 	
 	
 	
-	
+	/*****************Order*******************/
+		public OrderRespond addOrder(Order order) {
+			OrderRespond res = new OrderRespond();
+			try {
+				String query = " insert into orders (book_id, quantity, order_date)"
+				        + " values (?, ?, ?)";
+				PreparedStatement preparedStmt = con.prepareStatement(query);
+		        preparedStmt.setInt(1,order.getISBN());
+		        preparedStmt.setInt(2, order.getQuantity());
+		        preparedStmt.setDate(3, order.getDate());
+		        preparedStmt.execute();
+		        query = "SELECT MAX(id) FROM orders";
+		        preparedStmt = con.prepareStatement(query);
+		        ResultSet result = preparedStmt.executeQuery();
+		        if (result.next()) {
+		        	order.setId(result.getInt(1));
+		        }
+			} catch (Exception e) {
+				res.setError(e.toString());
+			}
+			res.setOrder(order);
+			return res;
+			
+		}
+		public OrderRespond approveOrder(Order order) {
+			OrderRespond res = new OrderRespond();
+			try {
+				String query = " delete from orders where id = (?), book_id = (?), quantity = (?), order_date=(?)";
+				PreparedStatement preparedStmt = con.prepareStatement(query);
+				preparedStmt.setInt(1,order.getId());
+				preparedStmt.setInt(2,order.getISBN());
+		        preparedStmt.setInt(3, order.getQuantity());
+		        preparedStmt.setDate(4, order.getDate());
+		        preparedStmt.execute();
+			} catch (Exception e) {
+				res.setError(e.toString());
+			}
+			res.setOrder(order);
+			return res;
+		}
+		
+		public ArrayList<Order> getAllOrders() {
+			ArrayList<Order> orders = new ArrayList<Order>();
+			try {
+				String queryString = "SELECT * FROM orders";
+		        PreparedStatement preparedStmt = con.prepareStatement(queryString);
+		        ResultSet result = preparedStmt.executeQuery();
+		        while (result.next()) {
+		        	Order order = new Order(result.getInt(2), result.getInt(3), result.getDate(4));
+		        	order.setId(result.getInt(1));
+		        	orders.add(order);
+		        }
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+			return orders;
+		}
 	
 	
 }

@@ -29,7 +29,6 @@ constraint publisher_PK primary key(Publisher_Name));
 create table book_copies(
 id int auto_increment not null,
 thersold int not null,
-constant_quantity int not null,
 available int not null,
 constraint book_copies_PK primary key(id));
 

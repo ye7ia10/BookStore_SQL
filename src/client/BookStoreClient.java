@@ -6,6 +6,8 @@ import java.util.List;
 import model.Book;
 import model.BookRespond;
 import model.BookStore;
+import model.Order;
+import model.OrderRespond;
 import model.Publisher;
 import model.PublisherRespond;
 import model.User;
@@ -75,7 +77,18 @@ public class BookStoreClient {
 	public BookRespond updateBook(Book book, Book new_book) {
 		return bookServer.updateBook(book, new_book);
 	}
-
+	
+	/**********Order*****************/
+	public OrderRespond addOrder(Order order) {
+		return bookServer.addOrder(order);
+	}
+	public OrderRespond approveOrder(Order order) {
+		return bookServer.approveOrder(order);
+	}
+	public ArrayList<Order> getAllOrders() {
+		return bookServer.getAllOrders();
+	}
+	
 	
 	
 }
