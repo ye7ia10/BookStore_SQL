@@ -6,14 +6,16 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="549.0" prefWidth="842.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.resultsController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="615.0" prefWidth="842.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.resultsController">
    <children>
-      <TableView fx:id="table" layoutX="14.0" layoutY="55.0" onMouseClicked="#getData" prefHeight="348.0" prefWidth="816.0">
+      <TableView fx:id="table" layoutX="14.0" layoutY="125.0" onMouseClicked="#getData" prefHeight="348.0" prefWidth="816.0">
         <columns>
           <TableColumn fx:id="idT" prefWidth="39.47491455078125" text="ID" />
           <TableColumn fx:id="titleT" prefWidth="155.72216796875" text="Title" />
@@ -32,12 +34,12 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </TableView>
-      <Label layoutX="14.0" layoutY="14.0" prefHeight="38.0" prefWidth="138.0" text="Book Results" textFill="#0fba42">
+      <Label layoutX="14.0" layoutY="84.0" prefHeight="38.0" prefWidth="138.0" text="Book Results" textFill="#0fba42">
          <font>
             <Font name="Bodoni MT Poster Compressed" size="32.0" />
          </font>
       </Label>
-      <HBox layoutX="54.0" layoutY="418.0" prefHeight="38.0" prefWidth="576.0" spacing="5.0">
+      <HBox layoutX="54.0" layoutY="488.0" prefHeight="38.0" prefWidth="576.0" spacing="5.0">
          <children>
             <TextField fx:id="IdF" prefHeight="25.0" prefWidth="98.0" promptText="ID" />
             <TextField fx:id="TitleF" prefHeight="25.0" prefWidth="98.0" promptText="Title" />
@@ -47,41 +49,59 @@
             <TextField fx:id="cateF" prefHeight="25.0" prefWidth="98.0" promptText="Category" />
          </children>
       </HBox>
-      <Button fx:id="add" layoutX="109.0" layoutY="496.0" mnemonicParsing="false" onAction="#addBook" prefHeight="38.0" prefWidth="131.0" style="-fx-background-color: green;" text="Add New Book" textFill="WHITE">
+      <Button fx:id="add" layoutX="109.0" layoutY="566.0" mnemonicParsing="false" onAction="#addBook" prefHeight="38.0" prefWidth="131.0" style="-fx-background-color: green;" text="Add New Book" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="modify" layoutX="277.0" layoutY="496.0" mnemonicParsing="false" onAction="#modifyBook" prefHeight="38.0" prefWidth="131.0" style="-fx-background-color: blue;" text="Modify" textFill="WHITE">
+      <Button fx:id="modify" layoutX="277.0" layoutY="566.0" mnemonicParsing="false" onAction="#modifyBook" prefHeight="38.0" prefWidth="131.0" style="-fx-background-color: blue;" text="Modify" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="clear" layoutX="437.0" layoutY="496.0" mnemonicParsing="false" onAction="#ClearFields" prefHeight="38.0" prefWidth="131.0" style="-fx-background-color: red;" text="Clear Fields" textFill="WHITE">
+      <Button fx:id="clear" layoutX="437.0" layoutY="566.0" mnemonicParsing="false" onAction="#ClearFields" prefHeight="38.0" prefWidth="131.0" style="-fx-background-color: red;" text="Clear Fields" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="14.0" />
          </font>
       </Button>
-      <VBox layoutX="706.0" layoutY="429.0" prefHeight="67.0" prefWidth="122.0" spacing="15.0">
+      <VBox layoutX="706.0" layoutY="489.0" prefHeight="67.0" prefWidth="122.0" spacing="15.0">
          <children>
-            <Button fx:id="details" mnemonicParsing="false" onAction="#pressButton" prefHeight="31.0" prefWidth="122.0" text="Detailed Result">
+            <Button fx:id="details" mnemonicParsing="false" onAction="#pressButton" prefHeight="31.0" prefWidth="122.0" text="Details">
                <font>
-                  <Font size="15.0" />
+                  <Font name="Calisto MT Bold" size="15.0" />
                </font>
             </Button>
-            <Button fx:id="orders" mnemonicParsing="false" onAction="#pressButtonOrder" prefHeight="31.0" prefWidth="124.0" text="Orders">
+            <Button fx:id="orders" mnemonicParsing="false" onAction="#pressButtonOrder" prefHeight="31.0" prefWidth="124.0" text="Show Orders">
                <font>
-                  <Font size="15.0" />
+                  <Font name="Calisto MT" size="15.0" />
                </font>
             </Button>
          </children>
       </VBox>
-      <HBox layoutX="144.0" layoutY="456.0" prefHeight="38.0" prefWidth="399.0" spacing="5.0">
+      <HBox layoutX="144.0" layoutY="526.0" prefHeight="38.0" prefWidth="399.0" spacing="5.0">
          <children>
             <TextField fx:id="authers" prefHeight="25.0" prefWidth="193.0" promptText="Authers" />
             <TextField fx:id="thres" prefHeight="25.0" prefWidth="98.0" promptText="Threshold" />
             <TextField fx:id="avaiable" prefHeight="25.0" prefWidth="98.0" promptText="Available" />
          </children>
       </HBox>
+      <TextField fx:id="searchCommand" layoutX="14.0" layoutY="45.0" prefHeight="38.0" prefWidth="576.0" promptText="Search Command ..." />
+      <Button fx:id="btnSearch" layoutX="622.0" layoutY="45.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="98.0" text="Search">
+         <graphic>
+            <ImageView fitHeight="23.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../images/search.png" />
+               </image>
+            </ImageView>
+         </graphic>
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Label layoutX="357.0" layoutY="7.0" text="Book Admin">
+         <font>
+            <Font name="Century Gothic" size="22.0" />
+         </font>
+      </Label>
    </children>
 </Pane>
