@@ -1,6 +1,7 @@
 package client;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import model.Book;
 import model.BookRespond;
@@ -59,14 +60,22 @@ public class BookStoreClient {
 	public PublisherRespond updatePublisher(Publisher publisher, Publisher new_publisher) {
 		return bookServer.updatePublisher(publisher, new_publisher);
 	}
-
-
+	public ArrayList<Publisher> getAllPublishers() {
+		return bookServer.getAllPublishers();
+	}
+	
+	/************** book *******************/
+	public ArrayList<Book> getAllBooks() {
+		return bookServer.getAllBooks();
+	}
+	
 	public BookRespond addBook(Book book) {
 		return bookServer.addBook(book);
 	}
 	public BookRespond updateBook(Book book, Book new_book) {
 		return bookServer.updateBook(book, new_book);
 	}
+
 	
 	
 }

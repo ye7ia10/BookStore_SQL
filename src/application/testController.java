@@ -1,5 +1,6 @@
 package application;
 
+import client.BookStoreClient;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -31,6 +32,7 @@ public class testController {
     @FXML
     private Button order;
 
+    private BookStoreClient model = new BookStoreClient();
     
 
     @FXML
@@ -48,6 +50,9 @@ public class testController {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("results.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
+            resultsController controller = 
+            	    fxmlLoader.<resultsController>getController();
+            	  controller.initData(model);
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));  
             stage.show();
