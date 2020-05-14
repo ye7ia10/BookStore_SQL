@@ -11,9 +11,9 @@ public class TestModel {
 		// TODO Auto-generated method stub
 		/* test user and model Respond */
 		BookStoreClient client = new BookStoreClient();
-		User user = new User("ahmed", "123", "ahmed", "nabil", "ahmed@gmail.com", "01278918571", "here");
+		User user = new User("ahmed", "123", "ahmed", "nabil", "ahmed@gmail.com", "01278918571", "here", 0);
 		client.login(user);
-		User new_user = new User("ahmed", "123", "ahmed", "nabil", "ahmed@gmail.com", "01278918571", "here after update");
+		User new_user = new User("ahmed", "123", "ahmed", "nabil", "ahmed@gmail.com", "01278918571", "here after update", 0);
 		client.updateUser(new_user);
 		ArrayList<User> users = client.getAllUsers();
 		for (User u : users) {

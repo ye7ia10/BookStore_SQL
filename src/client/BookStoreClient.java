@@ -89,6 +89,13 @@ public class BookStoreClient {
 		return bookServer.getAllOrders();
 	}
 	
-	
+	public UserRespond upgradeUser(User upgrade_user) {
+		UserRespond res = new UserRespond();
+		if (user == null) {
+			res.setError("not signed in");
+			return res;
+		}
+		return bookServer.upgradeUser(user, upgrade_user);
+	}
 	
 }

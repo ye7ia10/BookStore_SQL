@@ -8,8 +8,9 @@ public class User {
 	private String email;
 	private String phone;
 	private String address;
+	private int admin;
 	public User(String username, String password, String first_name, String last_name, String email, String phone,
-			String address) {
+			String address, int admin) {
 		this.username = username;
 		this.password = password;
 		this.first_name = first_name;
@@ -17,6 +18,13 @@ public class User {
 		this.email = email;
 		this.phone = phone;
 		this.address = address;
+		this.admin = admin;
+	}
+	public int getAdmin() {
+		return admin;
+	}
+	public void setAdmin(int admin) {
+		this.admin = admin;
 	}
 	public String getUsername() {
 		return username;

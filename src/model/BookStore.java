@@ -36,7 +36,7 @@ public class BookStore {
 	        	return res;
 	        }
 	        User user2 = new User(result.getString(5), result.getString(7), result.getString(1),
-	        		result.getString(2), result.getString(6), result.getString(3), result.getString(4));
+	        		result.getString(2), result.getString(6), result.getString(3), result.getString(4), result.getInt(8));
 	        res.setUser(user2);
 	        return res;
 		} catch (Exception e) {
@@ -45,7 +45,44 @@ public class BookStore {
 			return res;
 		}
 	}
-	
+	public boolean isAdmin(User user) {
+		if (user == null) {
+			return false;
+		}
+		try {
+			String query = "select from user where username = (?)";
+			PreparedStatement p = con.prepareStatement(query);
+			p.setString(1, user.getUsername());
+			ResultSet result = p.executeQuery();
+			if (result.next()) {
+				if (result.getInt(8) == 1) {
+					return true;
+				}
+			}
+		}catch (Exception e) {
+			e.printStackTrace();
+			return false;
+		}
+		return false;
+	}
+	public UserRespond upgradeUser(User user, User upgrade_user) {
+		UserRespond res = new UserRespond();
+		if (!login(user).isSuccess() || !isAdmin(user)) {
+			res.setError("you are not allowed to do this");
+			return res;
+		}
+		try {
+			String query = "update user set admin = 1 where username = (?)";
+			PreparedStatement p = con.prepareStatement(query);
+			p.setString(1, upgrade_user.getUsername());
+			p.execute();
+		}catch (Exception e) {
+			e.printStackTrace();
+			res.setError("cant upgrade");
+		}
+		res.setUser(upgrade_user);
+		return res;
+	}
 	public UserRespond signUp(User user) {
 			
 		UserRespond res = new UserRespond();
@@ -108,7 +145,7 @@ public class BookStore {
 	        ResultSet result = preparedStmt.executeQuery();
 	        while (result.next()) {
 	        	users.add(new User(result.getString(5), result.getString(7), result.getString(1),result.getString(2),
-	        			result.getString(6), result.getString(3), result.getString(4)) );
+	        			result.getString(6), result.getString(3), result.getString(4), result.getInt(8)) );
 	        }
 		}catch (Exception e) {
 			e.printStackTrace();
@@ -393,7 +430,21 @@ public class BookStore {
 			return res;
 		}
 		
-		
+		ArrayList<Book> searchForBook(ArrayList<String>columns, ArrayList<String>attributes) {
+			ArrayList<Book> res = new ArrayList<Book>();
+			if (columns.size() == 0 || columns.size() != attributes.size()) {
+				return res;
+			}
+			String query = "select from book where (?) = (?)";
+			for (int i = 1; i < columns.size(); i++) {
+				query += ", (?) = (?)";
+			}
+			int pointer = 3;
+			//PreparedStatement prep = con.prepareStatement(query);
+			
+			
+			return res;
+		}
 		
 		/***************authors**************/
 		public ArrayList<String> getAuthorsWithId(int id) {
@@ -471,6 +522,9 @@ public class BookStore {
 			}
 			return orders;
 		}
+
+
+		
 	
 	
 }

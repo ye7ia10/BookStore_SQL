@@ -38,3 +38,17 @@ book_id int not null,
 quantity int not null,
 order_date date not null,
 constraint orders_PK primary key(id));
+
+
+CREATE TABLE user (
+first_name varchar(55) NOT NULL,
+last_name varchar(55) NOT NULL,
+phone_number varchar(55) NOT NULL,
+address varchar(55) NOT NULL,
+username varchar(55) NOT NULL UNIQUE,
+email VARCHAR(320) NOT NULL UNIQUE,
+password VARCHAR(320) NOT NULL,
+admin int DEFAULT 0,
+CONSTRAINT chk_Frequency CHECK (admin IN (0,1)),
+primary key (username)
+);	
