@@ -103,10 +103,10 @@ public class testController {
 	    		User user = new User(username, passWord, "", "", "", "", "", 0);
 	    		UserRespond respond = bookStoreClient.login(user);
 	    		if (respond.isSuccess()) {
-	    		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("results.fxml"));
+	    		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("UserView.fxml"));
 	            Parent root1 = (Parent) fxmlLoader.load();
-	            resultsController controller = 
-		            	  fxmlLoader.<resultsController>getController();
+	            UserViewController controller = 
+		            	  fxmlLoader.<UserViewController>getController();
 		            	  controller.initData(bookStoreClient);	
 	            Stage stage = new Stage();
 	            stage.setScene(new Scene(root1));  
