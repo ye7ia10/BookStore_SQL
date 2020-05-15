@@ -2,9 +2,10 @@ package model;
 
 import java.sql.*;
 import java.util.ArrayList;
+
 public class BookStore {
 	private String username = "root";
-	private String password = "new_password";
+	private String password = "mypass";
 	private String dataBasse_name = "project";
 	private String host_url = "jdbc:mysql://localhost:3306/";
 	private Connection con;
@@ -50,7 +51,7 @@ public class BookStore {
 			return false;
 		}
 		try {
-			String query = "select from user where username = (?)";
+			String query = "select * from user where username = (?)";
 			PreparedStatement p = con.prepareStatement(query);
 			p.setString(1, user.getUsername());
 			ResultSet result = p.executeQuery();
@@ -91,8 +92,8 @@ public class BookStore {
 			String query = " insert into user (first_name, Last_name, phone_number, address, username, password, email)"
 			        + " values (?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement preparedStmt = con.prepareStatement(query);
-			preparedStmt.setString (1, user.getFirstName());
-			preparedStmt.setString (2, user.getLastName());
+			preparedStmt.setString (1, user.getFname());
+			preparedStmt.setString (2, user.getLname());
 			preparedStmt.setString (3, user.getPhone());
 			preparedStmt.setString (4, user.getAddress());
 			preparedStmt.setString (5, user.getUsername());
@@ -117,8 +118,8 @@ public class BookStore {
 					+ ", phone_number = (?) , address = (?) , email = (?)" + 
 					"WHERE username=(?);";
 			PreparedStatement preparedStmt = con.prepareStatement(query);
-			preparedStmt.setString (3, new_user.getFirstName());
-			preparedStmt.setString (4, new_user.getLastName());
+			preparedStmt.setString (3, new_user.getFname());
+			preparedStmt.setString (4, new_user.getLname());
 			preparedStmt.setString (5, new_user.getPhone());
 			preparedStmt.setString (6, new_user.getAddress());
 			preparedStmt.setString (1, new_user.getUsername());
@@ -144,7 +145,8 @@ public class BookStore {
 	        
 	        ResultSet result = preparedStmt.executeQuery();
 	        while (result.next()) {
-	        	users.add(new User(result.getString(5), result.getString(7), result.getString(1),result.getString(2),
+	        	System.out.println(result.getString(1));
+	        	users.add(new User(result.getString(5), result.getString(7), result.getString(2),result.getString(1),
 	        			result.getString(6), result.getString(3), result.getString(4), result.getInt(8)) );
 	        }
 		}catch (Exception e) {
@@ -430,6 +432,216 @@ public class BookStore {
 			return res;
 		}
 		
+		
+		
+		public ArrayList<Book> getBooksByISBN(int ISBN) {
+			
+			ArrayList<Book> books = new ArrayList<Book>();
+			try {
+				
+				String queryString = "SELECT * FROM book where ISBN = (?)";
+		        PreparedStatement preparedStmt = con.prepareStatement(queryString);
+		        preparedStmt.setInt(1, ISBN);
+		        ResultSet result = preparedStmt.executeQuery();
+		        while (result.next()) {
+		        	String title = result.getString(2);
+		        	String publisher_name = result.getString(3);
+		        	System.out.println(publisher_name);
+		        	int publish_year = result.getInt(4);
+		        	int selling_price = result.getInt(5);
+		        	int categoty_id = result.getInt(6);
+		        	String categoryQuery = "SELECT * FROM category WHERE id = (?)";
+		        	preparedStmt = con.prepareStatement(categoryQuery);
+		        	preparedStmt.setInt(1, categoty_id);
+		        	ResultSet resultOfCat = preparedStmt.executeQuery();
+		        	String category_name;
+		        	if (resultOfCat.next()) {
+		        		category_name = resultOfCat.getString("category_name");
+		        	} else {
+		        		continue;
+		        	}
+		        	String bookCopiesQ = "SELECT * FROM book_copies where id = (?)";
+		        	preparedStmt = con.prepareStatement(bookCopiesQ);
+		        	preparedStmt.setInt(1, ISBN);
+		        	ResultSet resultOfCopy = preparedStmt.executeQuery();
+		        	int threshold, available;
+		        	if (resultOfCopy.next()) {
+		        		threshold = resultOfCopy.getInt(2);
+		        		available = resultOfCopy.getInt(3);
+		        	} else {
+		        		return books;
+		        	}
+		        	ArrayList<String> authors = getAuthorsWithId(ISBN);
+		        	books.add(new Book(ISBN,title, publisher_name, publish_year, selling_price, category_name, authors, threshold, available));
+		        }
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+			return books;
+		}
+		
+		
+public ArrayList<Book> getBooksByPublisher_name(String publisher_name) {
+			
+			ArrayList<Book> books = new ArrayList<Book>();
+			try {
+				
+				String queryString = "SELECT * FROM book where publisher_Name = (?)";
+		        PreparedStatement preparedStmt = con.prepareStatement(queryString);
+		        preparedStmt.setString(1, publisher_name);
+		        ResultSet result = preparedStmt.executeQuery();
+		        while (result.next()) {
+		        	int ISBN = result.getInt(1);
+		        	String title = result.getString(2);
+		        	int publish_year = result.getInt(4);
+		        	int selling_price = result.getInt(5);
+		        	int categoty_id = result.getInt(6);
+		        	String categoryQuery = "SELECT * FROM category WHERE id = (?)";
+		        	preparedStmt = con.prepareStatement(categoryQuery);
+		        	preparedStmt.setInt(1, categoty_id);
+		        	ResultSet resultOfCat = preparedStmt.executeQuery();
+		        	String category_name;
+		        	if (resultOfCat.next()) {
+		        		category_name = resultOfCat.getString("category_name");
+		        	} else {
+		        		continue;
+		        	}
+		        	String bookCopiesQ = "SELECT * FROM book_copies where id = (?)";
+		        	preparedStmt = con.prepareStatement(bookCopiesQ);
+		        	preparedStmt.setInt(1, ISBN);
+		        	ResultSet resultOfCopy = preparedStmt.executeQuery();
+		        	int threshold, available;
+		        	if (resultOfCopy.next()) {
+		        		threshold = resultOfCopy.getInt(2);
+		        		available = resultOfCopy.getInt(3);
+		        	} else {
+		        		return books;
+		        	}
+		        	ArrayList<String> authors = getAuthorsWithId(ISBN);
+		        	books.add(new Book(ISBN,title, publisher_name, publish_year, selling_price, category_name, authors, threshold, available));
+		        }
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+			return books;
+	}
+
+public ArrayList<Book> getBooksByCategoryName(String category_name) {
+	
+	ArrayList<Book> books = new ArrayList<Book>();
+	
+	try {
+		String queryStringForCat = "SELECT * FROM category WHERE category_name=(?)";
+        PreparedStatement preparedStmt1 = con.prepareStatement(queryStringForCat);
+        preparedStmt1.setString(1, category_name);
+        ResultSet resultt = preparedStmt1.executeQuery();
+        if (!resultt.next()) {
+        	/* category not found */
+        	return books;
+        }
+		int category_id = resultt.getInt(1);
+		String queryString = "SELECT * FROM book where category_id = (?)";
+        PreparedStatement preparedStmt = con.prepareStatement(queryString);
+        preparedStmt.setInt(1, category_id);
+        ResultSet result = preparedStmt.executeQuery();
+        while (result.next()) {
+        	int ISBN = result.getInt(1);
+        	String title = result.getString(2);
+        	int publish_year = result.getInt(4);
+        	String publisher_name = result.getString(3);
+        	int selling_price = result.getInt(5);
+        	int categoty_id = result.getInt(6);
+        	String bookCopiesQ = "SELECT * FROM book_copies where id = (?)";
+        	preparedStmt = con.prepareStatement(bookCopiesQ);
+        	preparedStmt.setInt(1, ISBN);
+        	ResultSet resultOfCopy = preparedStmt.executeQuery();
+        	int threshold, available;
+        	if (resultOfCopy.next()) {
+        		threshold = resultOfCopy.getInt(2);
+        		available = resultOfCopy.getInt(3);
+        	} else {
+        		return books;
+        	}
+        	ArrayList<String> authors = getAuthorsWithId(ISBN);
+        	books.add(new Book(ISBN,title, publisher_name, publish_year, selling_price, category_name, authors, threshold, available));
+        }
+	}catch (Exception e) {
+		e.printStackTrace();
+	}
+	return books;
+}
+
+
+		
+public ArrayList<Book> getBooksByTitle(String title) {
+			
+			ArrayList<Book> books = new ArrayList<Book>();
+			try {
+				
+				String queryString = "SELECT * FROM book where title = (?)";
+		        PreparedStatement preparedStmt = con.prepareStatement(queryString);
+		        preparedStmt.setString(1, title);
+		        ResultSet result = preparedStmt.executeQuery();
+		        while (result.next()) {
+		        	int ISBN = result.getInt(1);
+		        	String publisher_name = result.getString(3);
+		        	int publish_year = result.getInt(4);
+		        	int selling_price = result.getInt(5);
+		        	int categoty_id = result.getInt(6);
+		        	String categoryQuery = "SELECT * FROM category WHERE id = (?)";
+		        	preparedStmt = con.prepareStatement(categoryQuery);
+		        	preparedStmt.setInt(1, categoty_id);
+		        	ResultSet resultOfCat = preparedStmt.executeQuery();
+		        	String category_name;
+		        	if (resultOfCat.next()) {
+		        		category_name = resultOfCat.getString("category_name");
+		        	} else {
+		        		continue;
+		        	}
+		        	String bookCopiesQ = "SELECT * FROM book_copies where id = (?)";
+		        	preparedStmt = con.prepareStatement(bookCopiesQ);
+		        	preparedStmt.setInt(1, ISBN);
+		        	ResultSet resultOfCopy = preparedStmt.executeQuery();
+		        	int threshold, available;
+		        	if (resultOfCopy.next()) {
+		        		threshold = resultOfCopy.getInt(2);
+		        		available = resultOfCopy.getInt(3);
+		        	} else {
+		        		return books;
+		        	}
+		        	ArrayList<String> authors = getAuthorsWithId(ISBN);
+		        	books.add(new Book(ISBN,title, publisher_name, publish_year, selling_price, category_name, authors, threshold, available));
+		        }
+			}catch (Exception e) {
+				e.printStackTrace();
+			}
+			return books;
+	}
+		
+
+		public ArrayList<Book> getBooksByAuthorName(String autherName) {
+	
+	ArrayList<Book> books = new ArrayList<Book>();
+	
+	try {
+		String queryStringForCat = "SELECT * FROM book_authors WHERE author_name = (?)";
+        PreparedStatement preparedStmt1 = con.prepareStatement(queryStringForCat);
+        preparedStmt1.setString(1, autherName);
+        ResultSet resultt = preparedStmt1.executeQuery();
+        ArrayList<Integer> ISBNs = new ArrayList<Integer>();
+        while (resultt.next()) {
+        	/* category not found */
+        	ISBNs.add(resultt.getInt(1));
+        }
+		
+        for (int ISBN : ISBNs) {
+        	books.addAll(getBooksByISBN(ISBN));
+        }
+	}catch (Exception e) {
+		e.printStackTrace();
+	}
+	return books;
+		}
 		ArrayList<Book> searchForBook(ArrayList<String>columns, ArrayList<String>attributes) {
 			ArrayList<Book> res = new ArrayList<Book>();
 			if (columns.size() == 0 || columns.size() != attributes.size()) {
@@ -489,15 +701,13 @@ public class BookStore {
 			return res;
 			
 		}
+
 		public OrderRespond approveOrder(Order order) {
 			OrderRespond res = new OrderRespond();
 			try {
-				String query = " delete from orders where id = (?), book_id = (?), quantity = (?), order_date=(?)";
+				String query = " delete from orders where id = (?)";
 				PreparedStatement preparedStmt = con.prepareStatement(query);
 				preparedStmt.setInt(1,order.getId());
-				preparedStmt.setInt(2,order.getISBN());
-		        preparedStmt.setInt(3, order.getQuantity());
-		        preparedStmt.setDate(4, order.getDate());
 		        preparedStmt.execute();
 			} catch (Exception e) {
 				res.setError(e.toString());

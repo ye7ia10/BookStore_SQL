@@ -6,12 +6,15 @@ import client.BookStoreClient;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.MenuButton;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.control.Alert.AlertType;
@@ -99,6 +102,14 @@ public class resultsController {
     @FXML
     private TextField avaiable;
     
+    @FXML
+    private MenuButton menus;
+    @FXML
+    private TextField searchCommand;
+    @FXML
+    private Button btnSearch;
+    private String Selected ;
+    
     
     private final ObservableList<Book> data =FXCollections.observableArrayList();
   
@@ -114,11 +125,135 @@ public class resultsController {
     	PriceT.setCellValueFactory(new PropertyValueFactory("sellingPrice"));
     	QuantT.setCellValueFactory(new PropertyValueFactory("available"));
     	TableT.setCellValueFactory(new PropertyValueFactory("minQuantity"));
-    
+    	
+    	MenuItem menuItem1 = new MenuItem("ISBN");
+        MenuItem menuItem2 = new MenuItem("Publisher");
+        MenuItem menuItem3 = new MenuItem("Authers");
+        MenuItem menuItem4 = new MenuItem("Title");
+        MenuItem menuItem5 = new MenuItem("Publish Year");
+        MenuItem menuItem6 = new MenuItem("Threshold");
+        MenuItem menuItem7 = new MenuItem("Price");
+        MenuItem menuItem8 = new MenuItem("Category");
+        MenuItem menuItem9 = new MenuItem("Available");
+
+        menuItem1.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				menus.setText("ISBN");
+				Selected = "ISBN";
+			}
+		});
+        menuItem2.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				menus.setText("Publisher");
+				Selected = "Publisher";
+			}
+		});
+        menuItem3.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				menus.setText("Authers");
+				Selected = "Authers";
+			}
+		});
+        menuItem4.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				menus.setText("Title");
+				Selected = "Title";
+			}
+		});
+        menuItem5.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				menus.setText("Publish Year");
+				Selected = "Publish Year";
+			}
+		});
+        menuItem6.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				menus.setText("Threshold");
+				Selected = "Threshold";
+			}
+		});
+        menuItem7.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				menus.setText("Price");
+				Selected = "Price";
+			}
+		});
+        menuItem8.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				menus.setText("Category");
+				Selected = "Category";
+			}
+		});
+       menuItem9.setOnAction(new EventHandler<ActionEvent>() {
+			@Override
+			public void handle(ActionEvent event) {
+				menus.setText("Available");
+				Selected = "Available";
+			}
+		}); 
+    	menus.getItems().addAll(menuItem1,menuItem2,menuItem3,menuItem4,menuItem5,menuItem6,menuItem7,menuItem8,menuItem9);
     }
    
     
-    
+   public void PressSearch(ActionEvent actionEvent) {
+	   data.clear();
+	   if (Selected.equals("ISBN")) {
+	   ArrayList<Book> books = model.getBooksByISBN(Integer.parseInt(searchCommand.getText()));
+	   System.out.println(model.getBooksByISBN(Integer.parseInt(searchCommand.getText())).size());
+	   for (int i = 0; i <  books.size() ; i++) {
+		   data.add(books.get(i));
+	     }
+	   } else if (Selected.equals("Title")) {
+		   ArrayList<Book> books = model.getBooksByTitle(searchCommand.getText());
+		   for (int i = 0; i <  books.size() ; i++) {
+			   data.add(books.get(i));
+		     }
+	   } else if (Selected.equals("Publisher")) {
+		   ArrayList<Book> books = model.getBooksByPublisherName(searchCommand.getText());
+		   for (int i = 0; i <  books.size() ; i++) {
+			   data.add(books.get(i));
+		     }
+	   } else if (Selected.equals("Category")) {
+		   ArrayList<Book> books = model.getBooksByCateggoryName(searchCommand.getText());
+		   for (int i = 0; i <  books.size() ; i++) {
+			   data.add(books.get(i));
+		     }
+	   } else if (Selected.equals("Authers")) {
+		   ArrayList<Book> books = model.getBooksByAuthorName(searchCommand.getText());
+		   for (int i = 0; i <  books.size() ; i++) {
+			   data.add(books.get(i));
+		     }
+	   }/* else if (Selected.equals("Publisher")) {
+		   ArrayList<Book> books = model.getBooksByTitle(searchCommand.getText());
+		   for (int i = 0; i <  books.size() ; i++) {
+			   data.add(books.get(i));
+		     }
+	   } else if (Selected.equals("Publisher")) {
+		   ArrayList<Book> books = model.getBooksByTitle(searchCommand.getText());
+		   for (int i = 0; i <  books.size() ; i++) {
+			   data.add(books.get(i));
+		     }
+	   } else if (Selected.equals("Publisher")) {
+		   ArrayList<Book> books = model.getBooksByTitle(searchCommand.getText());
+		   for (int i = 0; i <  books.size() ; i++) {
+			   data.add(books.get(i));
+		     }
+	   } else if (Selected.equals("Publisher")) {
+		   ArrayList<Book> books = model.getBooksByTitle(searchCommand.getText());
+		   for (int i = 0; i <  books.size() ; i++) {
+			   data.add(books.get(i));
+		     }
+	   } */
+	   table.setItems(data);
+   }
     public void pressButton(ActionEvent event) throws Exception {               
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("details.fxml"));
@@ -134,6 +269,8 @@ public class resultsController {
             e.printStackTrace();
         }
     }
+    
+   
     
     public void addBook(ActionEvent actionEvent) {
     	
@@ -195,6 +332,9 @@ public class resultsController {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Order.fxml"));
             Parent root1 = (Parent) fxmlLoader.load();
+            OrderController controller = 
+	            	  fxmlLoader.<OrderController>getController();
+	            	  controller.initiate(model);	
             Stage stage = new Stage();
             stage.setScene(new Scene(root1));  
             stage.show();
@@ -298,6 +438,20 @@ public class resultsController {
 
     }
     
+    public void showUsers(ActionEvent actionEvent) {
+    	try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("users.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            usersController controller = 
+	            	  fxmlLoader.<usersController>getController();
+	            	  controller.initData(model);	
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root1));  
+            stage.show();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
     
    
 }

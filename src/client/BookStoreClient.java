@@ -78,6 +78,22 @@ public class BookStoreClient {
 		return bookServer.updateBook(book, new_book);
 	}
 	
+	public ArrayList<Book> getBooksByISBN (int ISBN) {
+		return bookServer.getBooksByISBN(ISBN);
+	}
+	public ArrayList<Book> getBooksByTitle (String title) {
+		return bookServer.getBooksByTitle(title);
+	}
+	public ArrayList<Book> getBooksByPublisherName (String publisher_name) {
+		return bookServer.getBooksByPublisher_name(publisher_name);
+	}
+	public ArrayList<Book> getBooksByCateggoryName (String categoryName) {
+		return bookServer.getBooksByCategoryName(categoryName);
+	}
+	public ArrayList<Book> getBooksByAuthorName (String authorName) {
+		return bookServer.getBooksByAuthorName(authorName);
+	}
+	
 	/**********Order*****************/
 	public OrderRespond addOrder(Order order) {
 		return bookServer.addOrder(order);

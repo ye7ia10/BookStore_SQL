@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="676.0" prefWidth="786.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.detailsController">
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="373.0" prefWidth="689.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.detailsController">
    <children>
-      <TableView fx:id="tablePublisher" layoutX="14.0" layoutY="74.0" onMouseClicked="#getData" prefHeight="198.0" prefWidth="396.0">
+      <TableView fx:id="tablePublisher" layoutX="14.0" layoutY="74.0" onMouseClicked="#getData" prefHeight="198.0" prefWidth="663.0">
         <columns>
           <TableColumn fx:id="pubT" prefWidth="75.0" text="Name" />
           <TableColumn fx:id="phoneT" prefWidth="75.0" text="Phone" />
@@ -25,7 +25,7 @@
             <Cursor fx:constant="HAND" />
          </cursor>
       </TableView>
-      <Label layoutX="296.0" text="Results Details">
+      <Label layoutX="260.0" text="Results Details">
          <font>
             <Font name="Edwardian Script ITC" size="38.0" />
          </font>
@@ -35,103 +35,19 @@
             <Font name="System Bold Italic" size="19.0" />
          </font>
       </Label>
-      <HBox layoutX="54.0" layoutY="280.0" prefHeight="38.0" prefWidth="333.0" spacing="5.0">
+      <HBox layoutX="204.0" layoutY="280.0" prefHeight="38.0" prefWidth="333.0" spacing="5.0">
          <children>
             <TextField fx:id="Pname" promptText="Name" />
             <TextField fx:id="Pphone" promptText="phone" />
             <TextField fx:id="Paddress" promptText="Address" />
          </children>
       </HBox>
-      <HBox layoutX="171.0" layoutY="626.0" prefHeight="29.0" prefWidth="171.0" spacing="10.0">
-         <children>
-            <Button fx:id="ModCop" mnemonicParsing="false" prefHeight="29.0" prefWidth="82.0" style="-fx-background-color: blue;" text="Modify" textFill="WHITE">
-               <font>
-                  <Font size="13.0" />
-               </font>
-            </Button>
-         </children>
-      </HBox>
-      <TableView fx:id="tableAuthor" layoutX="477.0" layoutY="74.0" prefHeight="198.0" prefWidth="292.0">
-         <columns>
-            <TableColumn fx:id="auId" prefWidth="111.33331298828125" text="BookId" />
-            <TableColumn fx:id="auName" prefWidth="152.66668701171875" text="AuthorName" />
-         </columns>
-         <columnResizePolicy>
-            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-         </columnResizePolicy>
-      </TableView>
-      <HBox layoutX="522.0" layoutY="280.0" prefHeight="38.0" prefWidth="210.0" spacing="5.0">
-         <children>
-            <TextField fx:id="authID" promptText="BookId" />
-            <TextField fx:id="AuthName" promptText="AuthorName" />
-         </children>
-      </HBox>
-      <HBox layoutX="598.0" layoutY="318.0" prefHeight="29.0" prefWidth="171.0" spacing="10.0">
-         <children>
-            <Button fx:id="ModAuth" mnemonicParsing="false" onAction="#pressButton" prefHeight="29.0" prefWidth="82.0" style="-fx-background-color: blue;" text="Modify" textFill="WHITE">
-               <font>
-                  <Font size="13.0" />
-               </font>
-            </Button>
-         </children>
-      </HBox>
-      <Label layoutX="478.0" layoutY="46.0" text="Authors">
-         <font>
-            <Font name="System Bold Italic" size="19.0" />
-         </font>
-      </Label>
-      <Label layoutX="14.0" layoutY="355.0" text="Book_Copies">
-         <font>
-            <Font name="System Bold Italic" size="19.0" />
-         </font>
-      </Label>
-      <TableView fx:id="tableCopies" layoutX="14.0" layoutY="383.0" prefHeight="198.0" prefWidth="396.0">
-         <columns>
-            <TableColumn fx:id="copIId" prefWidth="75.0" text="BookID" />
-            <TableColumn fx:id="minCop" prefWidth="75.0" text="Threshold" />
-            <TableColumn fx:id="copQuan" prefWidth="75.0" text="Quantity" />
-         </columns>
-         <columnResizePolicy>
-            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-         </columnResizePolicy>
-      </TableView>
-      <HBox layoutX="46.0" layoutY="587.0" prefHeight="38.0" prefWidth="333.0" spacing="5.0">
-         <children>
-            <TextField fx:id="copId" promptText="bookID" />
-            <TextField fx:id="CopTh" promptText="Threshold" />
-            <TextField fx:id="CopQ" promptText="Quantity" />
-         </children>
-      </HBox>
-      <Label layoutX="475.0" layoutY="355.0" text="Categories">
-         <font>
-            <Font name="System Bold Italic" size="19.0" />
-         </font>
-      </Label>
-      <TableView fx:id="tableCat" layoutX="477.0" layoutY="383.0" prefHeight="198.0" prefWidth="292.0">
-         <columns>
-            <TableColumn fx:id="caatid" prefWidth="114.0" text="Id" />
-            <TableColumn fx:id="caatNamr" prefWidth="150.0" text="Category" />
-         </columns>
-         <columnResizePolicy>
-            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-         </columnResizePolicy>
-      </TableView>
-      <HBox layoutX="533.0" layoutY="587.0" prefHeight="38.0" prefWidth="210.0" spacing="5.0">
-         <children>
-            <TextField fx:id="CatId" promptText="BookId" />
-            <TextField fx:id="CatName" promptText="Category" />
-         </children>
-      </HBox>
-      <HBox layoutX="598.0" layoutY="626.0" prefHeight="29.0" prefWidth="171.0" spacing="10.0">
-         <children>
-            <Button fx:id="ModCat" mnemonicParsing="false" prefHeight="29.0" prefWidth="82.0" style="-fx-background-color: blue;" text="Modify" textFill="WHITE">
-               <font>
-                  <Font size="13.0" />
-               </font>
-            </Button>
-         </children>
-      </HBox>
-      <HBox layoutX="135.0" layoutY="317.0" prefHeight="29.0" prefWidth="171.0" spacing="10.0">
+      <HBox layoutX="171.0" layoutY="626.0" prefHeight="29.0" prefWidth="171.0" spacing="10.0" />
+      <HBox layoutX="522.0" layoutY="280.0" prefHeight="38.0" prefWidth="210.0" spacing="5.0" />
+      <HBox layoutX="46.0" layoutY="587.0" prefHeight="38.0" prefWidth="333.0" spacing="5.0" />
+      <HBox layoutX="533.0" layoutY="587.0" prefHeight="38.0" prefWidth="210.0" spacing="5.0" />
+      <HBox layoutX="598.0" layoutY="626.0" prefHeight="29.0" prefWidth="171.0" spacing="10.0" />
+      <HBox layoutX="285.0" layoutY="317.0" prefHeight="29.0" prefWidth="171.0" spacing="10.0">
          <children>
             <Button fx:id="addP" mnemonicParsing="false" onAction="#pressButton" prefHeight="25.0" prefWidth="72.0" style="-fx-background-color: green;" text="Add " textFill="WHITE">
                <font>

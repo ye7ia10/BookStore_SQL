@@ -299,7 +299,6 @@ public class detailsController {
 	    	Pname.setText(person.getName());
 	    	Pphone.setText(String.valueOf(person.getPhone()));
 	    	Paddress.setText(person.getAddress());
-
 	    }
 	    
 	 

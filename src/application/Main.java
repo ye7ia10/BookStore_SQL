@@ -16,10 +16,10 @@ public class Main extends Application {
 	public void start(Stage primaryStage) {
 		try {
 				
-			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("results.fxml"));
+			FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("test.fxml"));
 	        Parent root = (Parent) fxmlLoader.load();
-	         resultsController controller = 
-	            	  fxmlLoader.<resultsController>getController();
+	         testController controller = 
+	            	  fxmlLoader.<testController>getController();
 	            	  controller.initData(model);			
 			//scene.getStylesheets().add(getClass().getResource("application.css").toExternalForm());
 	        Scene scene = new Scene(root);

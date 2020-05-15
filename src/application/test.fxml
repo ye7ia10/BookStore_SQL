@@ -9,8 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="585.0" prefWidth="600.0" style="-fx-background-color: #0075EC;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="585.0" prefWidth="600.0" style="-fx-background-color: #0075EC;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.testController">
    <children>
       <ImageView fitHeight="87.0" fitWidth="87.0" layoutX="257.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
@@ -21,7 +20,7 @@
          <children>
             <TextField fx:id="userName" layoutX="11.0" layoutY="14.0" prefHeight="36.0" prefWidth="200.0" promptText="User Name ..." />
             <TextField fx:id="password" layoutX="13.0" layoutY="70.0" prefHeight="36.0" prefWidth="200.0" promptText=" Pass Word .." />
-            <Button fx:id="login" layoutX="83.0" layoutY="120.0" mnemonicParsing="false" text="Login">
+            <Button fx:id="login" layoutX="83.0" layoutY="120.0" mnemonicParsing="false" onAction="#login" text="Login">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -42,11 +41,11 @@
                   <TextField fx:id="emailS" prefHeight="42.0" prefWidth="200.0" promptText="Email" />
                   <TextField fx:id="FirstS" prefHeight="42.0" prefWidth="200.0" promptText="FirstName" />
                   <TextField fx:id="LastS" prefHeight="42.0" prefWidth="200.0" promptText="LastName" />
-                  <TextField fx:id="LastS" prefHeight="42.0" prefWidth="200.0" promptText="Phone" />
+                  <TextField fx:id="phoneS" prefHeight="42.0" prefWidth="200.0" promptText="Phone" />
                   <TextField fx:id="addessS" prefHeight="42.0" prefWidth="200.0" promptText="Address" />
-                  <Button fx:id="signUp" mnemonicParsing="false" prefHeight="37.0" prefWidth="236.0" text="Sign Up">
+                  <Button fx:id="signUp" mnemonicParsing="false" onAction="#signup" prefHeight="37.0" prefWidth="236.0" text="Sign Up">
                      <font>
-                        <Font size="16.0" />
+                        <Font name="System Bold" size="16.0" />
                      </font>
                   </Button>
                </children>
