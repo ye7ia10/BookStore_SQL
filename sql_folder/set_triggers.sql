@@ -1,6 +1,6 @@
 DELIMITER $$
 
-create trigger update_quantity before update on book_copies 
+create trigger update_quantity before update on book_copies
 for each row begin
 
 if OLD.available + NEW.available < 0 then set NEW.available = OLD.available;
@@ -12,7 +12,7 @@ DELIMITER ;
 
 DELIMITER $$
 
-create trigger update_quantity_order before delete on orders 
+create trigger update_quantity_order before delete on orders
 for each row begin
 
 update book_copies set book_copies.available = book_copies.available + OLD.quantity where book_copies.id = OLD.book_id;
@@ -22,12 +22,12 @@ DELIMITER ;
 
 DELIMITER $$
 
-create trigger place_order after update on book_copies 
+create trigger place_order after update on book_copies
 for each row begin
 
-if NEW.available < OLD.thersold then 
+if NEW.available < OLD.thersold then
 
-insert into orders(book_id, quantity, order_date) values(OLD.id, OLD.constant_quantity, CURDATE());
+insert into orders(book_id, quantity, order_date) values(OLD.id, OLD.thersold, CURDATE());
 
 end if;
 

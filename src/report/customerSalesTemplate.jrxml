@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.12.2.final using JasperReports Library version 6.12.2-75c5e90a222ab406e416cbf590a5397028a52de3  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="customerSalesTemplate" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="eeacfa25-347e-4ecd-8ae4-ea2d4cc658f1">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<subDataset name="customerDataSet" uuid="ae557013-a62b-4f88-8fb1-52d2f744bdd5">
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+		<queryString>
+			<![CDATA[]]>
+		</queryString>
+		<field name="userName" class="java.lang.String"/>
+		<field name="email" class="java.lang.String"/>
+		<field name="phone" class="java.lang.String"/>
+		<field name="boughtItems" class="java.lang.Integer"/>
+	</subDataset>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="customerDataSource" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="800" height="30" uuid="25428565-bf11-4cfa-af6f-b4948a39059e"/>
+				<box topPadding="0" leftPadding="0" bottomPadding="0" rightPadding="0">
+					<pen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Century Gothic" size="20"/>
+				</textElement>
+				<text><![CDATA[Report of Top 5 Customers]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="130" splitType="Stretch">
+			<componentElement>
+				<reportElement x="0" y="-30" width="800" height="99" uuid="2bf4eb56-c0c4-4eae-b4fe-28b18af2ceff"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+					<datasetRun subDataset="customerDataSet" uuid="33fcd10e-e1a4-4444-810e-3816b082a852">
+						<dataSourceExpression><![CDATA[$F{customerDataSource}]]></dataSourceExpression>
+					</datasetRun>
+					<jr:listContents height="99" width="800">
+						<staticText>
+							<reportElement x="10" y="10" width="131" height="21" uuid="2574680a-703f-45ae-99fe-f6430c473f65"/>
+							<textElement>
+								<font fontName="Century Gothic" size="16"/>
+							</textElement>
+							<text><![CDATA[User:]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="10" y="50" width="131" height="21" uuid="7cda4463-9fdd-46f7-9921-16575ac8efab"/>
+							<textElement>
+								<font fontName="Century Gothic" size="16"/>
+							</textElement>
+							<text><![CDATA[Phone:]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="250" y="10" width="131" height="21" uuid="8c9f2c21-3ba8-4117-bf53-4a0a693db385"/>
+							<textElement>
+								<font fontName="Century Gothic" size="16"/>
+							</textElement>
+							<text><![CDATA[Email:]]></text>
+						</staticText>
+						<staticText>
+							<reportElement x="430" y="50" width="170" height="21" uuid="2c8aa6f5-0f38-4475-b8fb-1f290811eba9"/>
+							<textElement>
+								<font fontName="Century Gothic" size="16"/>
+							</textElement>
+							<text><![CDATA[Purchased Qunatity:]]></text>
+						</staticText>
+						<textField>
+							<reportElement x="60" y="10" width="130" height="30" uuid="5cd62f08-3a3a-4912-befb-2cb987ff2da1"/>
+							<textElement>
+								<font fontName="Century Gothic" size="16"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{userName}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="310" y="10" width="100" height="30" uuid="664ae31c-64ba-48e0-9808-00dad971b48f"/>
+							<textElement>
+								<font fontName="Century Gothic" size="16"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{email}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="75" y="50" width="100" height="30" uuid="14bc3686-587f-4fab-bd04-1dd5f111fd00"/>
+							<textElement>
+								<font fontName="Century Gothic" size="16"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{phone}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement x="600" y="50" width="130" height="30" uuid="45ce2f19-7a70-4daa-8fd2-13adedf09e8f"/>
+							<textElement>
+								<font fontName="Century Gothic" size="16"/>
+							</textElement>
+							<textFieldExpression><![CDATA[$F{boughtItems}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
