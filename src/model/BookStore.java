@@ -736,19 +736,17 @@ public ArrayList<Book> getBooksByTitle(String title) {
 		}
 
 
-public Respond buy(ArrayList<Book> books, ArrayList<Integer> quantity, User user) {
+public Respond buy(ArrayList<CartItem> cartItmes, User user) {
 			
 			Respond res = new Respond();
-			if (books.size() != quantity.size()) {
-				res.setError("unexpected behaviour... can not complete the process");
-				return res;
-			}
+			
 			Map <Integer, Integer> map = new HashMap<>();
-			for (int i = 0; i < books.size(); i++) {
-				if (map.containsKey(books.get(i).getISBN())) {
-					map.put(books.get(i).getISBN(), map.get(books.get(i).getISBN()) + quantity.get(i));
+			for (int i = 0; i < cartItmes.size(); i++) {
+				
+				if (map.containsKey(cartItmes.get(i).getBook().getISBN())) {
+					map.put(cartItmes.get(i).getBook().getISBN(), map.get(cartItmes.get(i).getBook().getISBN()) + cartItmes.get(i).getQuantity());
 				} else {
-					map.put(books.get(i).getISBN(),quantity.get(i));
+					map.put(cartItmes.get(i).getBook().getISBN(), cartItmes.get(i).getQuantity());
 				}
 			}
 			for (Map.Entry<Integer, Integer> entry : map.entrySet()) {

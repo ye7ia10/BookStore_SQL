@@ -6,6 +6,7 @@ import java.util.List;
 import model.Book;
 import model.BookRespond;
 import model.BookStore;
+import model.CartItem;
 import model.Order;
 import model.OrderRespond;
 import model.Publisher;
@@ -114,8 +115,8 @@ public class BookStoreClient {
 		}
 		return bookServer.upgradeUser(user, upgrade_user);
 	}
-	public Respond buy(ArrayList<Book>books, ArrayList<Integer>quantity) {
-		return bookServer.buy(books, quantity, user);
+	public Respond buy(ArrayList<CartItem>cartItmes) {
+		return bookServer.buy(cartItmes, user);
 	}
 	
 }
