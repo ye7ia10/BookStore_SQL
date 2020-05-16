@@ -10,6 +10,7 @@ import model.Order;
 import model.OrderRespond;
 import model.Publisher;
 import model.PublisherRespond;
+import model.Respond;
 import model.User;
 import model.UserRespond;
 
@@ -112,6 +113,9 @@ public class BookStoreClient {
 			return res;
 		}
 		return bookServer.upgradeUser(user, upgrade_user);
+	}
+	public Respond buy(ArrayList<Book>books, ArrayList<Integer>quantity) {
+		return bookServer.buy(books, quantity, user);
 	}
 	
 }

@@ -734,7 +734,62 @@ public ArrayList<Book> getBooksByTitle(String title) {
 		}
 
 
-		
+public Respond buy(ArrayList<Book> books, ArrayList<Integer> quantity, User user) {
+			
+			Respond res = new Respond();
+			if (books.size() != quantity.size()) {
+				res.setError("unexpected behaviour... can not complete the process");
+				return res;
+			}
+			Map <Integer, Integer> map = new HashMap<>();
+			for (int i = 0; i < books.size(); i++) {
+				if (map.containsKey(books.get(i).getISBN())) {
+					map.put(books.get(i).getISBN(), map.get(books.get(i).getISBN()) + quantity.get(i));
+				} else {
+					map.put(books.get(i).getISBN(),quantity.get(i));
+				}
+			}
+			for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+			    int ISBN = entry.getKey();
+			    int quan = entry.getValue();
+			    ArrayList<Book> book = getBooksByISBN(ISBN);
+			    if (book.size() == 0 || book.get(0).getAvailable() < quan) {
+			    	res.setError("Sorry, don't have enough quantity in the store");
+			    	return res;
+			    }
+			}
+			for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+			    int ISBN = entry.getKey();
+			    int quan = entry.getValue();
+			    String query = "Update book_copies set available = available - (?) where ISBN = (?)";
+			    String query2 = "INSERT INTO customers_top_rated (username, quantity, last_checkout_date) "
+			    		+ "VALUES (?, ?, ?)";
+			    String query3 = "Insert INTO book_sales (ISBN, quantity,last_checkout_date) values (?, ?, ?)";
+			    try {
+			    	PreparedStatement prepared = con.prepareStatement(query);
+			    	prepared.setInt(1, quan);
+			    	prepared.setInt(2, ISBN);
+			    	prepared.execute();
+			    	prepared = con.prepareStatement(query2);
+			    	prepared.setString(1, user.getUsername());
+			    	prepared.setInt(2, quan);
+			    	prepared.setDate(3, new java.sql.Date(System.currentTimeMillis()));
+			    	prepared.execute();
+			    	prepared = con.prepareStatement(query3);
+			    	prepared.setInt(1, ISBN);
+			    	prepared.setInt(2, quan);
+			    	prepared.setDate(3, new java.sql.Date(System.currentTimeMillis()));
+			    	prepared.execute();
+			    	
+			    }catch (Exception e) {
+			    	e.printStackTrace();
+					res.setError(e.toString());
+				}
+			}
+			
+			return res;
+			
+		}
 	
 	
 }
