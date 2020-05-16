@@ -22,6 +22,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 import model.Book;
+import model.CartItem;
 
 public class UserViewController {
 
@@ -223,6 +224,35 @@ public class UserViewController {
  		     }
  	   } */
  	   table.setItems(data);
+    }
+    
+    private ArrayList<CartItem> items = new ArrayList<CartItem>();
+    public void addToCart(ActionEvent actionEvent) {
+    	Book book = table.getSelectionModel().getSelectedItem();
+    	CartItem cartItem = new CartItem(book, book.getTitle(), book.getPublisher_name(),
+    			book.getPublish_year(), book.getSellingPrice(), Integer.parseInt(quan.getText()), 
+    			book.getSellingPrice() * Integer.parseInt(quan.getText()));
+    	items.add(cartItem);
+    	Alert a = new Alert(AlertType.NONE);  
+	    a.setAlertType(AlertType.INFORMATION); 
+	    a.show();
+	    a.setTitle("Done");
+	    a.setHeaderText("Book Added Successfully");
+    }
+    
+    public void showCart(ActionEvent actionEvent) {
+    	try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("shopCart.fxml"));
+            Parent root1 = (Parent) fxmlLoader.load();
+            shopCartController controller = 
+	            	  fxmlLoader.<shopCartController>getController();
+	            	  controller.initData(model  , items);	
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root1));  
+            stage.show();
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
     }
     
     

@@ -31,7 +31,7 @@
          </image>
       </ImageView>
       <TextField fx:id="quan" layoutX="18.0" layoutY="482.0" prefHeight="36.0" prefWidth="185.0" promptText="Quantity" />
-      <Button fx:id="addToCart" layoutX="212.0" layoutY="482.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="134.0" style="-fx-background-color: green;" text="Add To Cart" textFill="WHITE">
+      <Button fx:id="addToCart" layoutX="212.0" layoutY="482.0" mnemonicParsing="false" onAction="#addToCart" prefHeight="36.0" prefWidth="134.0" style="-fx-background-color: green;" text="Add To Cart" textFill="WHITE">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -48,7 +48,7 @@
             <Font size="16.0" />
          </font>
       </MenuButton>
-      <Button fx:id="showCart" layoutX="355.0" layoutY="482.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="134.0" style="-fx-background-color: blue;" text="Show Cart" textFill="WHITE">
+      <Button fx:id="showCart" layoutX="355.0" layoutY="482.0" mnemonicParsing="false" onAction="#showCart" prefHeight="36.0" prefWidth="134.0" style="-fx-background-color: blue;" text="Show Cart" textFill="WHITE">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
