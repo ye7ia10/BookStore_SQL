@@ -7,12 +7,15 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
 import model.Book;
 import model.CartItem;
+import model.Respond;
 
 public class shopCartController {
 	private BookStoreClient model;
@@ -74,10 +77,16 @@ public class shopCartController {
 	}
 	
 	public void buy (ActionEvent actionEvent) {
-		if (true) { /*** success ***/
+		Respond respond = model.buy(list);
+		if (respond.isSuccess()) { /*** success ***/
 			list.clear();
 			data.clear();
 			table.refresh();
+			Alert a = new Alert(AlertType.NONE);  
+		    a.setAlertType(AlertType.INFORMATION); 
+		    a.show();
+		    a.setTitle("Done");
+		    a.setHeaderText("Done Successfully");
 		}
 	}
 }
