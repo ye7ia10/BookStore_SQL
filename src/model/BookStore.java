@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class BookStore {
 	private String username = "root";
-	private String password = "new_password";
+	private String password = "mypass";
 	private String dataBasse_name = "project";
 	private String host_url = "jdbc:mysql://localhost:3306/";
 	private Connection con;

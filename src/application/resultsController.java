@@ -319,9 +319,12 @@ public class resultsController {
 
     }
     
-    
+    public void refresh(ActionEvent actionEvent) {
+		initData(model);
+	}
     void initData (BookStoreClient model2) {
     	model = model2;
+    	data.clear();
     	for (int i = 0; i < model2.getAllBooks().size() ; i++) {
     		data.add(model2.getAllBooks().get(i));
     	}

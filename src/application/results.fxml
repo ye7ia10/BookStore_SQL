@@ -50,17 +50,17 @@
             <TextField fx:id="cateF" prefHeight="25.0" prefWidth="98.0" promptText="Category" />
          </children>
       </HBox>
-      <Button fx:id="add" layoutX="109.0" layoutY="566.0" mnemonicParsing="false" onAction="#addBook" prefHeight="38.0" prefWidth="131.0" style="-fx-background-color: green;" text="Add New Book" textFill="WHITE">
+      <Button fx:id="add" layoutX="59.0" layoutY="566.0" mnemonicParsing="false" onAction="#addBook" prefHeight="38.0" prefWidth="131.0" style="-fx-background-color: green;" text="Add New Book" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="modify" layoutX="277.0" layoutY="566.0" mnemonicParsing="false" onAction="#modifyBook" prefHeight="38.0" prefWidth="131.0" style="-fx-background-color: blue;" text="Modify" textFill="WHITE">
+      <Button fx:id="modify" layoutX="227.0" layoutY="566.0" mnemonicParsing="false" onAction="#modifyBook" prefHeight="38.0" prefWidth="131.0" style="-fx-background-color: blue;" text="Modify" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="clear" layoutX="437.0" layoutY="566.0" mnemonicParsing="false" onAction="#ClearFields" prefHeight="38.0" prefWidth="131.0" style="-fx-background-color: red;" text="Clear Fields" textFill="WHITE">
+      <Button fx:id="clear" layoutX="387.0" layoutY="566.0" mnemonicParsing="false" onAction="#ClearFields" prefHeight="38.0" prefWidth="131.0" style="-fx-background-color: red;" text="Clear Fields" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="14.0" />
          </font>
@@ -114,5 +114,6 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </MenuButton>
+      <Button fx:id="refresh" layoutX="539.0" layoutY="566.0" mnemonicParsing="false" onAction="#refresh" prefHeight="38.0" prefWidth="92.0" text="Refresh" />
    </children>
 </Pane>

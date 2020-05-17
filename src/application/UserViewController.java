@@ -228,6 +228,14 @@ public class UserViewController {
     
     private ArrayList<CartItem> items = new ArrayList<CartItem>();
     public void addToCart(ActionEvent actionEvent) {
+    	
+    	if (quan.getText().length() == 0) {
+    		Alert a = new Alert(AlertType.NONE);  
+    	    a.setAlertType(AlertType.ERROR); 
+    	    a.show();
+    	    a.setTitle("Error");
+    	    a.setHeaderText("Complete Fields");
+    	} else {
     	Book book = table.getSelectionModel().getSelectedItem();
     	CartItem cartItem = new CartItem(book, book.getTitle(), book.getPublisher_name(),
     			book.getPublish_year(), book.getSellingPrice(), Integer.parseInt(quan.getText()), 
@@ -238,6 +246,7 @@ public class UserViewController {
 	    a.show();
 	    a.setTitle("Done");
 	    a.setHeaderText("Book Added Successfully");
+    	}
     }
     
     public void showCart(ActionEvent actionEvent) {
