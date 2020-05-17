@@ -40,7 +40,7 @@
 		<band height="130" splitType="Stretch">
 			<componentElement>
 				<reportElement x="0" y="-30" width="800" height="99" uuid="2bf4eb56-c0c4-4eae-b4fe-28b18af2ceff"/>
-				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd">
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
 					<datasetRun subDataset="customerDataSet" uuid="33fcd10e-e1a4-4444-810e-3816b082a852">
 						<dataSourceExpression><![CDATA[$F{customerDataSource}]]></dataSourceExpression>
 					</datasetRun>
@@ -101,6 +101,12 @@
 							</textElement>
 							<textFieldExpression><![CDATA[$F{boughtItems}]]></textFieldExpression>
 						</textField>
+						<frame>
+							<reportElement x="9" y="10" width="782" height="81" uuid="6f43c0de-dcee-4ce9-96ab-a17dd7fab9ef"/>
+							<box>
+								<pen lineWidth="0.5" lineStyle="Solid"/>
+							</box>
+						</frame>
 					</jr:listContents>
 				</jr:list>
 			</componentElement>

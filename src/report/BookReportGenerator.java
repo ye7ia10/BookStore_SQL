@@ -33,8 +33,6 @@ public class BookReportGenerator {
 			e1.printStackTrace();
 		}
 
-	       byte[] reportData = null;
-
 	       JasperPrint jasperPrint = null;
 	       try {
 	           JRMapArrayDataSource dataSource = new JRMapArrayDataSource(new Object[]{bookReportInput.getDataSources()});
@@ -43,7 +41,7 @@ public class BookReportGenerator {
 	           jasperPrint = JasperFillManager.fillReport(jasperReport,
 	        		   bookReportInput.getParameters(), dataSource);
 
-	           reportData = JasperExportManager.exportReportToPdf(jasperPrint);
+
 	       } catch (JRException e) {
 	           e.printStackTrace();
 	       } catch (Exception e) {
