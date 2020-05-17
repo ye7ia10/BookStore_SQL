@@ -103,14 +103,25 @@ public class testController {
 	    		User user = new User(username, passWord, "", "", "", "", "", 0);
 	    		UserRespond respond = bookStoreClient.login(user);
 	    		if (respond.isSuccess()) {
-	    		FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("UserView.fxml"));
-	            Parent root1 = (Parent) fxmlLoader.load();
-	            UserViewController controller = 
-		            	  fxmlLoader.<UserViewController>getController();
-		            	  controller.initData(bookStoreClient);	
-	            Stage stage = new Stage();
-	            stage.setScene(new Scene(root1));  
-	            stage.show();
+	    			if (user.getAdmin() == 1) {
+	    				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("results.fxml"));
+	    	            Parent root1 = (Parent) fxmlLoader.load();
+	    	            resultsController controller = 
+	    		            	  fxmlLoader.<resultsController>getController();
+	    		            	  controller.initData(bookStoreClient);	
+	    	            Stage stage = new Stage();
+	    	            stage.setScene(new Scene(root1));  
+	    	            stage.show();
+	    			} else {
+	    				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("UserView.fxml"));
+	    	            Parent root1 = (Parent) fxmlLoader.load();
+	    	            UserViewController controller = 
+	    		            	  fxmlLoader.<UserViewController>getController();
+	    		            	  controller.initData(bookStoreClient);	
+	    	            Stage stage = new Stage();
+	    	            stage.setScene(new Scene(root1));  
+	    	            stage.show();
+	    			}
 	    		} else {
 	    			Alert a = new Alert(AlertType.NONE);  
 		    		a.setAlertType(AlertType.ERROR); 
