@@ -7,7 +7,7 @@ import java.util.Map;
 
 public class BookStore {
 	private String username = "root";
-	private String password = "mypass";
+	private String password = "new_password";
 	private String dataBasse_name = "project";
 	private String host_url = "jdbc:mysql://localhost:3306/";
 	private Connection con;
@@ -754,6 +754,7 @@ public Respond buy(ArrayList<CartItem> cartItmes, User user) {
 			    int quan = entry.getValue();
 			    ArrayList<Book> book = getBooksByISBN(ISBN);
 			    if (book.size() == 0 || book.get(0).getAvailable() < quan) {
+			    	System.out.println("hereeeeeeeeeeeeeeeeeeeeeeeeee");
 			    	res.setError("Sorry, don't have enough quantity in the store");
 			    	return res;
 			    }
@@ -761,7 +762,7 @@ public Respond buy(ArrayList<CartItem> cartItmes, User user) {
 			for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
 			    int ISBN = entry.getKey();
 			    int quan = entry.getValue();
-			    String query = "Update book_copies set available = available - (?) where ISBN = (?)";
+			    String query = "Update book_copies set available = available - (?) where id = (?)";
 			    String query2 = "INSERT INTO customers_top_rated (username, quantity, last_checkout_date) "
 			    		+ "VALUES (?, ?, ?)";
 			    String query3 = "Insert INTO book_sales (ISBN, quantity,last_checkout_date) values (?, ?, ?)";

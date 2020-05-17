@@ -9,7 +9,7 @@ constraint book_sales_FK foreign key(ISBN) references book(ISBN) ON DELETE restr
 
 create table customers_top_rated(
 id int auto_increment,
-username varchar(55) NOT NULL UNIQUE,
+username varchar(55) NOT NULL,
 quantity int not null,
 last_checkout_date datetime not null,
 constraint customers_top_rated_PK primary key(id),

@@ -102,6 +102,7 @@ public class testController {
 	    	} else {
 	    		User user = new User(username, passWord, "", "", "", "", "", 0);
 	    		UserRespond respond = bookStoreClient.login(user);
+	    		user = respond.getUser();
 	    		if (respond.isSuccess()) {
 	    			if (user.getAdmin() == 1) {
 	    				FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("results.fxml"));

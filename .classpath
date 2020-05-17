@@ -2,30 +2,34 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/JavaFX11"/>
-	<classpathentry kind="lib" path="D:/WorkSpace_Eclipse/DB/bcprov-jdk15on-1.62 - Copy.jar"/>
-	<classpathentry kind="lib" path="D:/WorkSpace_Eclipse/DB/bcprov-jdk15on-1.62.jar"/>
-	<classpathentry kind="lib" path="D:/WorkSpace_Eclipse/DB/castor-core-1.4.1 - Copy.jar"/>
-	<classpathentry kind="lib" path="D:/WorkSpace_Eclipse/DB/castor-core-1.4.1.jar"/>
-	<classpathentry kind="lib" path="D:/WorkSpace_Eclipse/DB/castor-xml-1.4.1.jar"/>
-	<classpathentry kind="lib" path="D:/WorkSpace_Eclipse/DB/commons-beanutils-1.9.4.jar"/>
-	<classpathentry kind="lib" path="D:/WorkSpace_Eclipse/DB/commons-collections-3.2.2.jar"/>
-	<classpathentry kind="lib" path="D:/WorkSpace_Eclipse/DB/commons-collections4-4.2.jar"/>
-	<classpathentry kind="lib" path="D:/WorkSpace_Eclipse/DB/commons-digester-2.1.jar"/>
-	<classpathentry kind="lib" path="D:/WorkSpace_Eclipse/DB/commons-lang3-3.4.jar"/>
-	<classpathentry kind="lib" path="D:/WorkSpace_Eclipse/DB/commons-logging-1.1.1.jar"/>
-	<classpathentry kind="lib" path="D:/WorkSpace_Eclipse/DB/compositeContent.jar"/>
-	<classpathentry kind="lib" path="D:/WorkSpace_Eclipse/DB/ecj-4.4.2.jar"/>
-	<classpathentry kind="lib" path="D:/WorkSpace_Eclipse/DB/itext-2.1.7.js7.jar"/>
-	<classpathentry kind="lib" path="D:/WorkSpace_Eclipse/DB/jackson-annotations-2.10.0.jar"/>
-	<classpathentry kind="lib" path="D:/WorkSpace_Eclipse/DB/jackson-core-2.10.0.jar"/>
-	<classpathentry kind="lib" path="D:/WorkSpace_Eclipse/DB/jackson-databind-2.10.0.jar"/>
-	<classpathentry kind="lib" path="D:/WorkSpace_Eclipse/DB/jasperreports-6.12.2.jar"/>
-	<classpathentry kind="lib" path="D:/WorkSpace_Eclipse/DB/jasperreports-functions-6.12.2.jar"/>
-	<classpathentry kind="lib" path="D:/WorkSpace_Eclipse/DB/javax.inject-1.jar"/>
-	<classpathentry kind="lib" path="D:/WorkSpace_Eclipse/DB/jcommon-1.0.23.jar"/>
-	<classpathentry kind="lib" path="D:/WorkSpace_Eclipse/DB/jfreechart-1.0.19.jar"/>
-	<classpathentry kind="lib" path="D:/WorkSpace_Eclipse/DB/joda-time-2.9.9.jar"/>
-	<classpathentry kind="lib" path="D:/WorkSpace_Eclipse/DB/mysql-connector-java-8.0.20.jar"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="/home/ahmed/eclipse-workspace/DB/mysql-connector-java-8.0.20.jar"/>
+	<classpathentry kind="lib" path="/home/ahmed/eclipse-workspace/DB/joda-time-2.9.9.jar"/>
+	<classpathentry kind="lib" path="/home/ahmed/eclipse-workspace/DB/jfreechart-1.0.19.jar"/>
+	<classpathentry kind="lib" path="/home/ahmed/eclipse-workspace/DB/jcommon-1.0.23.jar"/>
+	<classpathentry kind="lib" path="/home/ahmed/eclipse-workspace/DB/javax.inject-1.jar"/>
+	<classpathentry kind="lib" path="/home/ahmed/eclipse-workspace/DB/jasperreports-functions-6.12.2.jar"/>
+	<classpathentry kind="lib" path="/home/ahmed/eclipse-workspace/DB/jasperreports-6.12.2.jar"/>
+	<classpathentry kind="lib" path="/home/ahmed/eclipse-workspace/DB/jackson-databind-2.10.0.jar"/>
+	<classpathentry kind="lib" path="/home/ahmed/eclipse-workspace/DB/jackson-core-2.10.0.jar"/>
+	<classpathentry kind="lib" path="/home/ahmed/eclipse-workspace/DB/jackson-annotations-2.10.0.jar"/>
+	<classpathentry kind="lib" path="/home/ahmed/eclipse-workspace/DB/itext-2.1.7.js7.jar"/>
+	<classpathentry kind="lib" path="/home/ahmed/eclipse-workspace/DB/ecj-4.4.2.jar"/>
+	<classpathentry kind="lib" path="/home/ahmed/eclipse-workspace/DB/compositeContent.jar"/>
+	<classpathentry kind="lib" path="/home/ahmed/eclipse-workspace/DB/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="/home/ahmed/eclipse-workspace/DB/commons-lang3-3.4.jar"/>
+	<classpathentry kind="lib" path="/home/ahmed/eclipse-workspace/DB/commons-digester-2.1.jar"/>
+	<classpathentry kind="lib" path="/home/ahmed/eclipse-workspace/DB/commons-collections-3.2.2.jar"/>
+	<classpathentry kind="lib" path="/home/ahmed/eclipse-workspace/DB/commons-collections4-4.2.jar"/>
+	<classpathentry kind="lib" path="/home/ahmed/eclipse-workspace/DB/commons-beanutils-1.9.4.jar"/>
+	<classpathentry kind="lib" path="/home/ahmed/eclipse-workspace/DB/castor-xml-1.4.1.jar"/>
+	<classpathentry kind="lib" path="/home/ahmed/eclipse-workspace/DB/castor-core-1.4.1 - Copy.jar"/>
+	<classpathentry kind="lib" path="/home/ahmed/eclipse-workspace/DB/castor-core-1.4.1.jar"/>
+	<classpathentry kind="lib" path="/home/ahmed/eclipse-workspace/DB/bcprov-jdk15on-1.62 - Copy.jar"/>
+	<classpathentry kind="lib" path="/home/ahmed/eclipse-workspace/DB/bcprov-jdk15on-1.62.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
