@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import report.BookReportGenerator;
+
 public class BookStore {
 	private String username = "root";
 	private String password = "new_password";
@@ -741,6 +743,26 @@ public class BookStore {
 
 		return res;
 
+	}
+	public void ShowBooksSelling() {
+		String query = "Select ISBN, title, publisher_Name, selling_price, count(quantity) from book_sales join book on "
+				+ " (book_sales.ISBN = book.ISBN) where "
+				+ "book_sales.last_checkout_date <= DATE_SUB(NOW(), INTERVAL 1 MONTH) group by ISBN";
+		try {
+			PreparedStatement prepared = con.prepareStatement(query);
+			ResultSet result = prepared.executeQuery();
+			ArrayList<SalesReport> salesArr = new ArrayList<SalesReport>();
+			while(result.next()) {
+				SalesReport sales = new SalesReport(result.getInt(1), result.getString(2),
+						result.getString(3), result.getInt(4), result.getInt(5));
+				salesArr.add(sales);
+			}
+			BookReportGenerator generator = new BookReportGenerator();
+			generator.generateReport(salesArr, "Book Sales");
+			
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 
 }

@@ -466,7 +466,7 @@ public class resultsController {
     }
     
     public void ShowBooksSelling(ActionEvent actionEvent) {
-    	
+    	model.ShowBooksSelling();
     }
     
     public void ShowToPBooksSelling(ActionEvent actionEvent) {

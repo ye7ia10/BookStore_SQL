@@ -119,4 +119,8 @@ public class BookStoreClient {
 		return bookServer.buy(cartItmes, user);
 	}
 	
+	public void ShowBooksSelling() {
+		bookServer.ShowBooksSelling();
+	}
+	
 }
