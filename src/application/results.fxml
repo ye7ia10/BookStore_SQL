@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -14,9 +15,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="626.0" prefWidth="851.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.resultsController">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="626.0" prefWidth="1060.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.resultsController">
    <children>
-      <TableView fx:id="table" layoutX="14.0" layoutY="125.0" onMouseClicked="#getData" prefHeight="348.0" prefWidth="823.0">
+      <TableView fx:id="table" layoutX="14.0" layoutY="125.0" onMouseClicked="#getData" prefHeight="348.0" prefWidth="1032.0">
         <columns>
           <TableColumn fx:id="idT" prefWidth="39.47491455078125" text="ID" />
           <TableColumn fx:id="titleT" prefWidth="155.72216796875" text="Title" />
@@ -65,7 +66,7 @@
             <Font name="System Bold Italic" size="14.0" />
          </font>
       </Button>
-      <VBox layoutX="685.0" layoutY="484.0" prefHeight="123.0" prefWidth="146.0" spacing="15.0">
+      <VBox layoutX="715.0" layoutY="484.0" prefHeight="123.0" prefWidth="146.0" spacing="15.0">
          <children>
             <Button fx:id="details" mnemonicParsing="false" onAction="#pressButton" prefHeight="31.0" prefWidth="148.0" text="Publishers Details">
                <font>
@@ -104,7 +105,7 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Button>
-      <Label layoutX="357.0" layoutY="7.0" text="Book Admin">
+      <Label layoutX="475.0" layoutY="8.0" text="Book Admin">
          <font>
             <Font name="Century Gothic" size="22.0" />
          </font>
@@ -114,6 +115,29 @@
             <Font name="System Bold" size="14.0" />
          </font>
       </MenuButton>
-      <Button fx:id="refresh" layoutX="539.0" layoutY="566.0" mnemonicParsing="false" onAction="#refresh" prefHeight="38.0" prefWidth="92.0" text="Refresh" />
+      <Button fx:id="refresh" layoutX="539.0" layoutY="566.0" mnemonicParsing="false" onAction="#refresh" prefHeight="38.0" prefWidth="92.0" text="Refresh">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font></Button>
+      <Separator layoutX="878.0" layoutY="479.0" orientation="VERTICAL" prefHeight="134.0" prefWidth="7.0" style="-fx-background-color: black;" />
+      <VBox layoutX="901.0" layoutY="484.0" prefHeight="123.0" prefWidth="146.0" spacing="15.0">
+         <children>
+            <Button fx:id="sales" mnemonicParsing="false" onAction="#ShowBooksSelling" prefHeight="31.0" prefWidth="148.0" text="Books Sales">
+               <font>
+                  <Font name="Calisto MT Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="topsales" mnemonicParsing="false" onAction="#ShowToPBooksSelling" prefHeight="31.0" prefWidth="148.0" text="Top Selling Books">
+               <font>
+                  <Font name="Calisto MT Bold" size="15.0" />
+               </font>
+            </Button>
+            <Button fx:id="topCust" mnemonicParsing="false" onAction="#ShowTopFiveCustomer" prefHeight="31.0" prefWidth="148.0" text="Top 5 Customers">
+               <font>
+                  <Font name="Calisto MT Bold" size="15.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
    </children>
 </Pane>

@@ -108,6 +108,15 @@ public class resultsController {
     private TextField searchCommand;
     @FXML
     private Button btnSearch;
+    @FXML
+    private Button sales;
+
+    @FXML
+    private Button topsales;
+
+    @FXML
+    private Button topCust;
+    
     private String Selected ;
     
     
@@ -456,5 +465,17 @@ public class resultsController {
         }
     }
     
+    public void ShowBooksSelling(ActionEvent actionEvent) {
+    	
+    }
+    
+    public void ShowToPBooksSelling(ActionEvent actionEvent) {
+    	
+    }
+    
+    public void ShowTopFiveCustomer(ActionEvent actionEvent) {
+    	
+    }
+
    
 }

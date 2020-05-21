@@ -38,6 +38,9 @@ public class usersController {
 	@FXML
 	private Button upgrade;
 	
+	   @FXML
+	    private TableColumn<?, ?> isAdmin;
+	
     private final ObservableList<User> data =FXCollections.observableArrayList();
     private BookStoreClient model;
 
@@ -53,6 +56,7 @@ public class usersController {
 		mail.setCellValueFactory(new PropertyValueFactory("email"));
 		phone.setCellValueFactory(new PropertyValueFactory("phone"));
 		address.setCellValueFactory(new PropertyValueFactory("address"));
+		isAdmin.setCellValueFactory(new PropertyValueFactory("admin"));
 		
     	
 	}

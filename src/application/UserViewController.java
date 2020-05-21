@@ -52,6 +52,9 @@ public class UserViewController {
     
     @FXML
     private TextField quan;
+    
+    @FXML
+    private Button refresh;
 
     @FXML
     private Button addToCart;
@@ -180,7 +183,9 @@ public class UserViewController {
         }
     }
     
-    public void PressSearch(ActionEvent actionEvent) {
+    public void PressSearchBtn(ActionEvent actionEvent) {
+       System.out.println("hiiiiiiiiiiiiii");
+       System.out.println(Selected);
  	   data.clear();
  	   if (Selected.equals("Title")) {
  		   ArrayList<Book> books = model.getBooksByTitle(searchCommand.getText());
@@ -264,7 +269,9 @@ public class UserViewController {
         }
     }
     
-    
+    public void refresh(ActionEvent actionEvent) {
+		initData(model);
+	}
     
 
    
