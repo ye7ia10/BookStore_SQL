@@ -8,14 +8,14 @@ import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 public class CustomerSalesReportDataAssembler {
 
-	public static CustomerSalesReportInput assemble(ArrayList<CustomerSalesReport> customerList, String type) {
+	public static CustomerSalesReportInput assemble(ArrayList<CustomerSalesReport> customerList) {
 
-		CustomerSalesReportInput bookReportInput = new CustomerSalesReportInput();
+		CustomerSalesReportInput customerReportInput = new CustomerSalesReportInput();
 
 		JRBeanCollectionDataSource customerDataSource = new JRBeanCollectionDataSource(customerList, false);
-		bookReportInput.setBookDataSource(customerDataSource);
+		customerReportInput.setBookDataSource(customerDataSource);
 
-	    return bookReportInput;
+	    return customerReportInput;
 
 	}
 
