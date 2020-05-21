@@ -6,8 +6,6 @@ import java.util.ArrayList;
 
 import model.CustomerSalesReport;
 import model.CustomerSalesReportInput;
-import model.SalesReport;
-import model.SalesReportInput;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
@@ -32,7 +30,8 @@ public class CustomerReportGenerator {
 			e1.printStackTrace();
 		}
 
-	       byte[] reportData = null;
+	    @SuppressWarnings("unused")
+		byte[] reportData = null;
 
 	       JasperPrint jasperPrint = null;
 	       try {

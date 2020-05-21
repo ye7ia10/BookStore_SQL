@@ -1,8 +1,6 @@
 package client;
 
 import java.util.ArrayList;
-import java.util.List;
-
 import model.Book;
 import model.BookRespond;
 import model.BookStore;
@@ -122,5 +120,12 @@ public class BookStoreClient {
 	public void ShowBooksSelling() {
 		bookServer.ShowBooksSelling();
 	}
+	public void ShowToPBooksSelling() {
+		bookServer.ShowToPBooksSelling();
+	}
+	public void ShowTopFiveCustomer() {
+		bookServer.ShowTopFiveCustomer();
+	}
+	
 	
 }

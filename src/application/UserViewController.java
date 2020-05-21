@@ -24,6 +24,7 @@ import javafx.stage.Stage;
 import model.Book;
 import model.CartItem;
 
+@SuppressWarnings("rawtypes")
 public class UserViewController {
 
 	private BookStoreClient model;
@@ -76,7 +77,7 @@ public class UserViewController {
     
 	private String Selected;
     
-    @SuppressWarnings({ "unchecked", "rawtypes" })
+    @SuppressWarnings({ "unchecked" })
 	@FXML
     void initialize() {
     	titleT.setCellValueFactory(new PropertyValueFactory("title"));

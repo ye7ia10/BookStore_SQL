@@ -4,8 +4,6 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import com.mysql.cj.jdbc.exceptions.SQLError;
-
 public class Book {
 	
 	private int ISBN;

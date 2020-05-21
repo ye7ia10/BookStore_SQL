@@ -1,10 +1,6 @@
 package application;
 
 import java.io.IOException;
-import java.util.ResourceBundle;
-
-import javax.print.DocFlavor.URL;
-
 import client.BookStoreClient;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

@@ -2,11 +2,7 @@ package report;
 
 import java.io.File;
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.ArrayList;
-
-import com.lowagie.text.pdf.PdfObject;
-
 import model.SalesReport;
 import model.SalesReportInput;
 import net.sf.jasperreports.engine.JRException;

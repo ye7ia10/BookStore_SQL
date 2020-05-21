@@ -6,11 +6,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import report.BookReportGenerator;
+import report.CustomerReportGenerator;
 
 public class BookStore {
 	private String username = "root";
-	private String password = "new_password";
-	private String dataBasse_name = "Book_Store";
+	private String password = "mypass";
+	private String dataBasse_name = "project";
 	private String host_url = "jdbc:mysql://localhost:3306/";
 	private Connection con;
 
@@ -746,10 +747,11 @@ public class BookStore {
 
 	}
 	public void ShowBooksSelling() {
+		
 		System.out.println("enter ");
 		String query = "Select book.ISBN, title, publisher_Name, selling_price, count(quantity) from book_sales join book on "
 				+ " (book_sales.ISBN = book.ISBN) where "
-				+ "book_sales.last_checkout_date <= DATE_SUB(NOW(), INTERVAL 1 MONTH) group by ISBN";
+				+ "book_sales.last_checkout_date >= DATE_SUB(NOW(), INTERVAL 1 MONTH) group by ISBN";
 		try {
 			PreparedStatement prepared = con.prepareStatement(query);
 			ResultSet result = prepared.executeQuery();
@@ -759,14 +761,63 @@ public class BookStore {
 						result.getString(3), result.getInt(4), result.getInt(5));
 				salesArr.add(sales);
 			}
+			System.out.println(salesArr.size());
+			System.err.println(salesArr.get(0));
 			BookReportGenerator generator = new BookReportGenerator();
 			generator.generateReport(salesArr, "Book Sales");
 			
 		} catch (Exception e) {
 			System.out.println(e);
-			// TODO: handle exception
 		}
 		System.out.println("finish");
 	}
 
+	public void ShowToPBooksSelling() {
+        System.out.println("enter ");
+        String query = "Select book.ISBN, title, publisher_Name, selling_price, count(quantity) as a from book_sales join book on "
+                + " (book_sales.ISBN = book.ISBN) group by ISBN order by a DESC LIMIT 10";
+        try {
+            PreparedStatement prepared = con.prepareStatement(query);
+            ResultSet result = prepared.executeQuery();
+            ArrayList<SalesReport> salesArr = new ArrayList<SalesReport>();
+            while(result.next()) {
+                SalesReport sales = new SalesReport(result.getInt(1), result.getString(2),
+                        result.getString(3), result.getInt(4), result.getInt(5));
+                salesArr.add(sales);
+            }
+            BookReportGenerator generator = new BookReportGenerator();
+            generator.generateReport(salesArr, "Top 10 Book Sales");
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        System.out.println("finish");
+
+    }
+
+	public void ShowTopFiveCustomer() {
+		System.out.println("enter ");
+        String query = "Select user.username, email, phone_number, count(quantity) as a from customers_top_rated join user on "
+                + " (customers_top_rated.username = user.username) group by customers_top_rated.username"
+                + " order by a DESC LIMIT 5";
+        try {
+            PreparedStatement prepared = con.prepareStatement(query);
+            ResultSet result = prepared.executeQuery();
+            ArrayList<CustomerSalesReport> salesArr = new ArrayList<CustomerSalesReport>();
+            while(result.next()) {
+                CustomerSalesReport sales = new CustomerSalesReport(result.getString(1), result.getString(2), 
+                        result.getString(3), result.getInt(4));
+                salesArr.add(sales);
+            }
+            CustomerReportGenerator generator = new CustomerReportGenerator();
+            generator.generateReport(salesArr);
+
+        } catch (Exception e) {
+            System.out.println(e);
+            // TODO: handle exception
+        }
+        System.out.println("finish");
+
+		
+	}
 }

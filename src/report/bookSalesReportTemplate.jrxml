@@ -55,9 +55,12 @@
 		</band>
 	</pageHeader>
 	<columnHeader>
-		<band height="103" splitType="Stretch">
+		<band height="103" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
 			<componentElement>
-				<reportElement x="0" y="0" width="800" height="103" uuid="1625265f-77cd-4480-9fe1-1c4b30ec8f3e">
+				<reportElement x="1" y="7" width="800" height="103" uuid="1625265f-77cd-4480-9fe1-1c4b30ec8f3e">
 					<property name="com.jaspersoft.studio.layout"/>
 				</reportElement>
 				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
@@ -145,9 +148,6 @@
 				</jr:list>
 			</componentElement>
 		</band>
-	</columnHeader>
-	<detail>
-		<band height="125" splitType="Stretch"/>
 	</detail>
 	<columnFooter>
 		<band height="45" splitType="Stretch"/>

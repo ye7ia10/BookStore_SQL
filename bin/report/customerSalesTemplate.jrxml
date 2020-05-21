@@ -37,9 +37,12 @@
 		<band height="35" splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="130" splitType="Stretch">
+		<band height="130" splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch">
 			<componentElement>
-				<reportElement x="0" y="-30" width="800" height="99" uuid="2bf4eb56-c0c4-4eae-b4fe-28b18af2ceff"/>
+				<reportElement x="1" y="13" width="800" height="99" uuid="2bf4eb56-c0c4-4eae-b4fe-28b18af2ceff"/>
 				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
 					<datasetRun subDataset="customerDataSet" uuid="33fcd10e-e1a4-4444-810e-3816b082a852">
 						<dataSourceExpression><![CDATA[$F{customerDataSource}]]></dataSourceExpression>
@@ -111,9 +114,6 @@
 				</jr:list>
 			</componentElement>
 		</band>
-	</columnHeader>
-	<detail>
-		<band height="125" splitType="Stretch"/>
 	</detail>
 	<columnFooter>
 		<band height="45" splitType="Stretch"/>

@@ -467,14 +467,30 @@ public class resultsController {
     
     public void ShowBooksSelling(ActionEvent actionEvent) {
     	model.ShowBooksSelling();
+    	Alert a = new Alert(AlertType.NONE);  
+	    a.setAlertType(AlertType.INFORMATION); 
+	    a.show();
+	    a.setTitle("Done");
+	    a.setHeaderText("Report Generated Successfully");
     }
     
     public void ShowToPBooksSelling(ActionEvent actionEvent) {
-    	
+    	model.ShowToPBooksSelling();
+    	Alert a = new Alert(AlertType.NONE);  
+	    a.setAlertType(AlertType.INFORMATION); 
+	    a.show();
+	    a.setTitle("Done");
+	    a.setHeaderText("Report Generated Successfully");
+
     }
     
     public void ShowTopFiveCustomer(ActionEvent actionEvent) {
-    	
+    	model.ShowTopFiveCustomer();
+    	Alert a = new Alert(AlertType.NONE);  
+	    a.setAlertType(AlertType.INFORMATION); 
+	    a.show();
+	    a.setTitle("Done");
+	    a.setHeaderText("Report Generated Successfully");
     }
 
    

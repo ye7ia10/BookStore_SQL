@@ -1,9 +1,5 @@
 package model;
 
-import java.util.HashMap;
-import java.util.Map;
-
-import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
 public class CustomerSalesReport {
 

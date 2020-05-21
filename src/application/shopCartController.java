@@ -13,16 +13,18 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.cell.PropertyValueFactory;
-import model.Book;
 import model.CartItem;
 import model.Respond;
 
+
+@SuppressWarnings("rawtypes")
 public class shopCartController {
 	private BookStoreClient model;
 	private ArrayList<CartItem> list = new ArrayList<CartItem>();
     @FXML
     private TableView<CartItem> table;
     
+
 	@FXML
     private TableColumn titleT;
 
@@ -49,7 +51,7 @@ public class shopCartController {
     private final ObservableList<CartItem> data =FXCollections.observableArrayList();
 
     
-    @SuppressWarnings({ "unchecked", "rawtypes" })
+    @SuppressWarnings({ "unchecked" })
 	@FXML
     void initialize() {
     	titleT.setCellValueFactory(new PropertyValueFactory("Title"));
