@@ -233,6 +233,10 @@ public class BookStore {
 	public BookRespond addBook(Book book) {
 
 		BookRespond res = new BookRespond();
+		if (book.getAvailable() < 0 || book.getSellingPrice() < 0) {
+			res.setError("cant add book");
+			return res;
+		}
 		int ISBN = book.getISBN();
 		ArrayList<String> authors = book.getAuthors();
 		int min_quantity = book.getMinQuantity();
@@ -323,6 +327,10 @@ public class BookStore {
 	public BookRespond updateBook(Book book, Book new_book) {
 
 		BookRespond res = new BookRespond();
+		if (new_book.getAvailable() < 0 || new_book.getSellingPrice() < 0) {
+			res.setError("cant add book");
+			return res;
+		}
 		ArrayList<String> authors = new_book.getAuthors();
 		try {
 			con.setAutoCommit(false);
@@ -615,6 +623,11 @@ public class BookStore {
 	/***************** Order *******************/
 	public OrderRespond addOrder(Order order) {
 		OrderRespond res = new OrderRespond();
+		if (order.getQuantity() < 0) {
+			res.setError("cant order negative quantity");
+			return res;
+		}
+		
 		try {
 			String query = " insert into orders (book_id, quantity, order_date)" + " values (?, ?, ?)";
 			PreparedStatement preparedStmt = con.prepareStatement(query);
@@ -673,7 +686,10 @@ public class BookStore {
 
 		Map<Integer, Integer> map = new HashMap<>();
 		for (int i = 0; i < cartItmes.size(); i++) {
-
+			if (cartItmes.get(i).getQuantity() < 0) {
+				res.setError("Sorry, can not buy negative quantity");
+				return res;
+			}
 			if (map.containsKey(cartItmes.get(i).getBook().getISBN())) {
 				map.put(cartItmes.get(i).getBook().getISBN(),
 						map.get(cartItmes.get(i).getBook().getISBN()) + cartItmes.get(i).getQuantity());
