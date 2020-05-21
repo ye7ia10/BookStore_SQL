@@ -683,7 +683,8 @@ public class BookStore {
 	}
 
 	public Respond buy(ArrayList<CartItem> cartItmes, User user) {
-
+		
+		
 		Respond res = new Respond();
 
 		Map<Integer, Integer> map = new HashMap<>();
@@ -740,12 +741,13 @@ public class BookStore {
 			e.printStackTrace();
 			res.setError(e.toString());
 		}
-
+		
 		return res;
 
 	}
 	public void ShowBooksSelling() {
-		String query = "Select ISBN, title, publisher_Name, selling_price, count(quantity) from book_sales join book on "
+		System.out.println("enter ");
+		String query = "Select book.ISBN, title, publisher_Name, selling_price, count(quantity) from book_sales join book on "
 				+ " (book_sales.ISBN = book.ISBN) where "
 				+ "book_sales.last_checkout_date <= DATE_SUB(NOW(), INTERVAL 1 MONTH) group by ISBN";
 		try {
@@ -761,8 +763,10 @@ public class BookStore {
 			generator.generateReport(salesArr, "Book Sales");
 			
 		} catch (Exception e) {
+			System.out.println(e);
 			// TODO: handle exception
 		}
+		System.out.println("finish");
 	}
 
 }
