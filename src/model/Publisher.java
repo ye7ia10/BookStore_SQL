@@ -1,5 +1,8 @@
 package model;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+
 public class Publisher {
 	private String name;
 	private String address;
@@ -33,6 +36,18 @@ public class Publisher {
 
 	public void setPhone(int phone) {
 		this.phone = phone;
+	}
+
+	public PreparedStatement setPrepared(PreparedStatement preparedStmt) throws SQLException {
+		try {
+			preparedStmt.setString (1, name);
+			preparedStmt.setString (2,address);
+			preparedStmt.setInt    (3, phone);
+		} catch (SQLException e) {
+			throw new SQLException("can not add publisher");
+		}
+		
+		return preparedStmt;
 	}
 	
 	

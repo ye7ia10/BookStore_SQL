@@ -1,5 +1,11 @@
 package model;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import javax.management.RuntimeErrorException;
+
 public class User {
 	private String username;
 	private String password;
@@ -19,6 +25,20 @@ public class User {
 		this.phone = phone;
 		this.address = address;
 		this.admin = admin;
+	}
+	public User(ResultSet result) throws SQLException {
+		try {
+			this.username = result.getString(5);
+			this.password = result.getString(7);
+			this.fname = result.getString(1);
+			this.lname = result.getString(2);
+			this.email = result.getString(6);
+			this.phone = result.getString(3);
+			this.address = result.getString(4);
+			this.admin = result.getInt(8);
+		} catch (Exception e) {
+			throw new SQLException("an error happened when constructing user");
+		}
 	}
 	public String getUsername() {
 		return username;
@@ -67,6 +87,21 @@ public class User {
 	}
 	public void setAdmin(int admin) {
 		this.admin = admin;
+	}
+	public PreparedStatement preparedForInsert(PreparedStatement preparedStmt) throws SQLException {
+		try {
+		
+		preparedStmt.setString (1, this.getFname());
+		preparedStmt.setString (2, this.getLname());
+		preparedStmt.setString (3, this.getPhone());
+		preparedStmt.setString (4, this.getAddress());
+		preparedStmt.setString (5, this.getUsername());
+		preparedStmt.setString (6, this.getPassword());
+		preparedStmt.setString (7, this.getEmail());
+		}catch (Exception e) {
+			throw new SQLException("an error happened when sign up user");
+		}
+		return preparedStmt;
 	}
 	
 	

@@ -1,6 +1,10 @@
 package model;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
+
+import com.mysql.cj.jdbc.exceptions.SQLError;
 
 public class Book {
 	
@@ -97,6 +101,20 @@ public class Book {
 
 	public void setAvailable(int available) {
 		this.available = available;
+	}
+
+	public PreparedStatement preparedForInsert(PreparedStatement preparedStmt, int category_id) throws SQLException {
+		try {
+			preparedStmt.setInt (1, ISBN);
+			preparedStmt.setString (2, title);
+			preparedStmt.setString (3, publisher_name);
+			preparedStmt.setInt (4, publish_year);
+			preparedStmt.setInt (5, sellingPrice);
+			preparedStmt.setInt (6, category_id);
+			return preparedStmt;
+		} catch (Exception e) {
+			throw new SQLException("can not add book");
+		}
 	}
 	
 	
